@@ -1,5 +1,15 @@
 package com.example.yeper.yeper.services;
 
-public interface OrdersSevices {
+import java.util.List;
 
+import org.springframework.stereotype.Service;
+
+import com.example.yeper.yeper.entity.Orders;
+
+@Service
+public interface OrdersSevices {
+	public Orders add(Orders order,long id);
+	public List<Orders> getall(long id);
+	public Orders getsingle(long id);
+	public Orders update(long id,Orders order);
 }

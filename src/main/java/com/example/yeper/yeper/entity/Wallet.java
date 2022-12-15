@@ -18,7 +18,8 @@ import jakarta.persistence.OneToOne;
 public class Wallet {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	public int id;
+	public long id;
+	public long balance;
 	
 	@OneToOne(cascade = CascadeType.ALL)
 	@JsonIgnore
@@ -33,19 +34,28 @@ public class Wallet {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Wallet(int id, Users user, List<Wallet_transactions> txn) {
+	public Wallet(long id, long balance, Users user, List<Wallet_transactions> txn) {
 		super();
 		this.id = id;
+		this.balance = balance;
 		this.user = user;
 		this.txn = txn;
 	}
 
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
+	}
+
+	public long getBalance() {
+		return balance;
+	}
+
+	public void setBalance(long balance) {
+		this.balance = balance;
 	}
 
 	public Users getUser() {
@@ -63,6 +73,7 @@ public class Wallet {
 	public void setTxn(List<Wallet_transactions> txn) {
 		this.txn = txn;
 	}
+
 	
 	
 }
