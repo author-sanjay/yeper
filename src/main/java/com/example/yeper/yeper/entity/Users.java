@@ -21,11 +21,11 @@ public class Users {
 	
 	public String email;
 	
-	public int phonenumber;
+	public long phonenumber;
 	
-	public String Address;
+	public String address;
 	
-	public String ReferalCode;
+	public String referalCode;
 	
 	public boolean isuser;
 	
@@ -43,15 +43,15 @@ public class Users {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Users(long id, String name, String email, int phonenumber, String address, String referalCode,
+	public Users(long id, String name, String email, long phonenumber, String address, String referalCode,
 			boolean isuser, List<Orders> orders, Wallet wallet, List<Referrals> referrals) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.email = email;
 		this.phonenumber = phonenumber;
-		Address = address;
-		ReferalCode = referalCode;
+		this.address = address;
+		this.referalCode = referalCode;
 		this.isuser = isuser;
 		this.orders = orders;
 		this.wallet = wallet;
@@ -82,28 +82,28 @@ public class Users {
 		this.email = email;
 	}
 
-	public int getPhonenumber() {
+	public long getPhonenumber() {
 		return phonenumber;
 	}
 
-	public void setPhonenumber(int phonenumber) {
+	public void setPhonenumber(long phonenumber) {
 		this.phonenumber = phonenumber;
 	}
 
 	public String getAddress() {
-		return Address;
+		return address;
 	}
 
 	public void setAddress(String address) {
-		Address = address;
+		this.address = address;
 	}
 
 	public String getReferalCode() {
-		return ReferalCode;
+		return referalCode;
 	}
 
 	public void setReferalCode(String referalCode) {
-		ReferalCode = referalCode;
+		this.referalCode = referalCode;
 	}
 
 	public boolean isIsuser() {
@@ -137,6 +137,9 @@ public class Users {
 	public void setReferrals(List<Referrals> referrals) {
 		this.referrals = referrals;
 	}
+	
+	
+
 
 	
 }

@@ -37,6 +37,7 @@ public class DealsServiceImpl implements DealsServices{
 		Optional<Deals> deal1=dealsdao.findById(id);
 		if(deal1.isPresent()) {
 			Deals deal2=deal1.get();
+			deal2.setId(deal.getId());
 			deal2.setActive(deal.isActive());
 			deal2.setActual_price(deal.getActual_price());
 			deal2.setCard(deal.getCard());
