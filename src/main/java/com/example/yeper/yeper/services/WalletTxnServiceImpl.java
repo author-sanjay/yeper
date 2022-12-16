@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.example.yeper.yeper.dao.UserDao;
 import com.example.yeper.yeper.dao.WalletTxnDao;
@@ -12,6 +13,7 @@ import com.example.yeper.yeper.entity.Users;
 import com.example.yeper.yeper.entity.Wallet;
 import com.example.yeper.yeper.entity.Wallet_transactions;
 
+@Service
 public class WalletTxnServiceImpl implements WalletTxnServices{
 
 	

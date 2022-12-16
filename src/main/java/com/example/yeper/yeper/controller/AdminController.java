@@ -10,23 +10,28 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.yeper.yeper.entity.Wallet_transactions;
-import com.example.yeper.yeper.services.WalletServices;
-import com.example.yeper.yeper.services.WalletTxnServices;
+import com.example.yeper.yeper.entity.Admin;
+import com.example.yeper.yeper.services.AdminService;
 
-@RequestMapping("/txn")
+@RequestMapping("/admin")
 @RestController
-public class WallettxnController {
+public class AdminController {
+
 	@Autowired
-	public WalletTxnServices wallettxnservice;
+	public AdminService admin;
 	
 	@GetMapping(path = "/get")
-	public List<Wallet_transactions> get(){
-		return this.wallettxnservice.getall();
+	public List<Admin> getall(){
+		return this.admin.getall();
 	}
 	
-	@PostMapping(path="/add/{id}")
-	public Wallet_transactions add(@RequestBody Wallet_transactions txn,@PathVariable long id) {
-		return this.wallettxnservice.add(txn, id);
+	@PostMapping(path="/add")
+	public Admin add(@RequestBody Admin admins) {
+		return this.admin.add(admins);
+	}
+	
+	@GetMapping(path = "/verify/{id}/{pass}")
+	public Admin verify(@PathVariable String id, String password) {
+		return this.admin.verify(id, password);
 	}
 }
