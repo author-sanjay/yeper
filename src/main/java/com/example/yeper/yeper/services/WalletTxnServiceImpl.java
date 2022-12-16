@@ -35,9 +35,10 @@ public class WalletTxnServiceImpl implements WalletTxnServices{
 		if(wal.isPresent()) {
 			Wallet wal1=wal.get();
 			txn.setWallet(wal1);
-			walletdao.save(txn);
-		}
-		return null;
+			wallettxndao.save(txn);
+			return txn;
+		}else {
+		return null;}
 	}
 
 	@Override
