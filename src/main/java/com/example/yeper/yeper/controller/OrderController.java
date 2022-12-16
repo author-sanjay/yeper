@@ -21,9 +21,9 @@ public class OrderController {
 	@Autowired
 	public OrdersSevices order;
 	
-	@GetMapping(path = "/getall/{id}")
-	public List<Orders> getforuser(@PathVariable long id){
-		return this.order.getall(id);
+	@GetMapping(path = "/getall")
+	public List<Orders> getforuser(){
+		return this.order.getall();
 	}
 	
 	@GetMapping(path = "/getsingle/{id}")

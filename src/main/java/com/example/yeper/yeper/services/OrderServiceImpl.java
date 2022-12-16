@@ -35,14 +35,15 @@ public class OrderServiceImpl implements OrdersSevices{
 	}
 
 	@Override
-	public List<Orders> getall(long id) {
+	public List<Orders> getall() {
 		// TODO Auto-generated method stub
-		return null;
+		return orderdao.findAll();
 	}
 
 	@Override
 	public Orders getsingle(long id) {
 		// TODO Auto-generated method stub
+		
 		return null;
 	}
 

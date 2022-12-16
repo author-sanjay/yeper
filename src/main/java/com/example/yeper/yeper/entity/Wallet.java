@@ -19,6 +19,7 @@ public class Wallet {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public long id;
+	
 	public long balance;
 	
 	@OneToOne(cascade = CascadeType.ALL)

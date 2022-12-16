@@ -29,6 +29,8 @@ public class Users {
 	
 	public boolean isuser;
 	
+	public String referedby;
+	
 	@OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
 	public List<Orders> orders;
 	
@@ -44,7 +46,7 @@ public class Users {
 	}
 
 	public Users(long id, String name, String email, long phonenumber, String address, String referalCode,
-			boolean isuser, List<Orders> orders, Wallet wallet, List<Referrals> referrals) {
+			boolean isuser, String referedby, List<Orders> orders, Wallet wallet, List<Referrals> referrals) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -53,6 +55,7 @@ public class Users {
 		this.address = address;
 		this.referalCode = referalCode;
 		this.isuser = isuser;
+		this.referedby = referedby;
 		this.orders = orders;
 		this.wallet = wallet;
 		this.referrals = referrals;
@@ -114,6 +117,14 @@ public class Users {
 		this.isuser = isuser;
 	}
 
+	public String getReferedby() {
+		return referedby;
+	}
+
+	public void setReferedby(String referedby) {
+		this.referedby = referedby;
+	}
+
 	public List<Orders> getOrders() {
 		return orders;
 	}
@@ -137,6 +148,7 @@ public class Users {
 	public void setReferrals(List<Referrals> referrals) {
 		this.referrals = referrals;
 	}
+
 	
 	
 
