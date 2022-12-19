@@ -56,15 +56,12 @@ public class OrderServiceImpl implements OrdersSevices{
 	}
 
 	@Override
-	public Orders update(long id, Orders order) {
+	public Orders complete(long id) {
 		// TODO Auto-generated method stub
 		Optional<Orders> order1=orderdao.findById(id);
 		if(order1.isPresent()) {
 			Orders order2=order1.get();
-			order2.setId(order.getId());
-			order2.setUser(order.getUser());
-			order2.setOrder_id(order.getOrder_id());
-			order2.setOrder_status(order.getOrder_status());
+			order2.setOrder_status("Completed");
 			orderdao.save(order2);
 			return order2;
 		}else {

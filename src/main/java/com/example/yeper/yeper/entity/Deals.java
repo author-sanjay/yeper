@@ -25,15 +25,16 @@ public class Deals {
 	public int countleft;
 	public boolean active;
 	public String offerlink;
+	public String offerplatform;
 	@OneToMany(mappedBy = "deals",cascade = CascadeType.ALL)
 	public List<Orders> orders;
-	
 	public Deals() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 	public Deals(long id, String product_name, String description, long actual_price, long offer_price, String card,
-			long user_earning, String photourl, int countleft, boolean active, String offerlink, List<Orders> orders) {
+			long user_earning, String photourl, int countleft, boolean active, String offerlink, String offerplatform,
+			List<Orders> orders) {
 		super();
 		this.id = id;
 		this.product_name = product_name;
@@ -46,6 +47,7 @@ public class Deals {
 		this.countleft = countleft;
 		this.active = active;
 		this.offerlink = offerlink;
+		this.offerplatform = offerplatform;
 		this.orders = orders;
 	}
 	public long getId() {
@@ -113,6 +115,12 @@ public class Deals {
 	}
 	public void setOfferlink(String offerlink) {
 		this.offerlink = offerlink;
+	}
+	public String getOfferplatform() {
+		return offerplatform;
+	}
+	public void setOfferplatform(String offerplatform) {
+		this.offerplatform = offerplatform;
 	}
 	public List<Orders> getOrders() {
 		return orders;

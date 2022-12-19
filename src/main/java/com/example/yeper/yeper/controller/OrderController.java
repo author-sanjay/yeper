@@ -34,8 +34,8 @@ public class OrderController {
 	}
 
 	@PutMapping(path = "/update/{id}")
-	public Orders add(@PathVariable long id, @RequestBody Orders order) {
-		return this.order.update(id, order);
+	public Orders add(@PathVariable long id) {
+		return this.order.complete(id);
 	}
 
 }
