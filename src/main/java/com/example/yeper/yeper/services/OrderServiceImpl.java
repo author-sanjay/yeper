@@ -49,9 +49,14 @@ public class OrderServiceImpl implements OrdersSevices{
 	}
 
 	@Override
-	public Orders getsingle(long id) {
+	public List<Orders> getsingle(long id) {
 		// TODO Auto-generated method stub
-		
+		Optional<Users> user=userdao.findById(id);
+		if(user.isPresent()) {
+			Users user1=user.get();
+			List<Orders> order=user1.getOrders();
+			return order;
+		}
 		return null;
 	}
 

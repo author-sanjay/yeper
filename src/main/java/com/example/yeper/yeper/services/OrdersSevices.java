@@ -10,6 +10,6 @@ import com.example.yeper.yeper.entity.Orders;
 public interface OrdersSevices {
 	public Orders add(Orders order,long id,long id2);
 	public List<Orders> getall();
-	public Orders getsingle(long id);
+	public List<Orders> getsingle(long id);
 	public Orders complete(long id);
 }

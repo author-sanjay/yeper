@@ -31,13 +31,16 @@ public class UserServiceImpl implements UserServices{
 			user2.setAddress(user.getAddress());
 			user2.setEmail(user.getEmail());
 			user2.setName(user.getName());
-			user2.setOrders(user.getOrders());
+			
 			user2.setPhonenumber(user.getPhonenumber());
-			user2.setReferalCode(user.getReferalCode());
-			user2.setReferrals(user.getReferrals());
-			user2.setWallet(user.getWallet());
-			user2.setId(user.getId());
+			
+			
+			
+			user2.setAcnumber(user.getAcnumber());
+			user2.setBankname(user.getBankname());
+			user2.setIdfc(user.getIdfc());
 			userdao.save(user2);
+			return user2;
 		}
 		return null;
 	}

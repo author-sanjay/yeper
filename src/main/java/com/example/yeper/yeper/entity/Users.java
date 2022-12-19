@@ -12,32 +12,36 @@ import jakarta.persistence.OneToOne;
 
 @Entity
 public class Users {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public long id;
-	
+
 	public String name;
-	
+
 	public String email;
-	
-	public long phonenumber;
-	
+
+	public String phonenumber;
+
 	public String address;
-	
+
 	public String referalCode;
-	
+
 	public boolean isuser;
-	
+
 	public String referedby;
-	
-	@OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
+
+	public int acnumber;
+	public String bankname;
+	public String idfc;
+
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
 	public List<Orders> orders;
-	
-	@OneToOne(mappedBy = "user",cascade = CascadeType.ALL)
+
+	@OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
 	public Wallet wallet;
-	
-	@OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
+
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
 	public List<Referrals> referrals;
 
 	public Users() {
@@ -45,8 +49,9 @@ public class Users {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Users(long id, String name, String email, long phonenumber, String address, String referalCode,
-			boolean isuser, String referedby, List<Orders> orders, Wallet wallet, List<Referrals> referrals) {
+	public Users(long id, String name, String email, String phonenumber, String address, String referalCode,
+			boolean isuser, String referedby, int acnumber, String bankname, String idfc, List<Orders> orders,
+			Wallet wallet, List<Referrals> referrals) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -56,6 +61,9 @@ public class Users {
 		this.referalCode = referalCode;
 		this.isuser = isuser;
 		this.referedby = referedby;
+		this.acnumber = acnumber;
+		this.bankname = bankname;
+		this.idfc = idfc;
 		this.orders = orders;
 		this.wallet = wallet;
 		this.referrals = referrals;
@@ -85,11 +93,11 @@ public class Users {
 		this.email = email;
 	}
 
-	public long getPhonenumber() {
+	public String getPhonenumber() {
 		return phonenumber;
 	}
 
-	public void setPhonenumber(long phonenumber) {
+	public void setPhonenumber(String phonenumber) {
 		this.phonenumber = phonenumber;
 	}
 
@@ -125,6 +133,30 @@ public class Users {
 		this.referedby = referedby;
 	}
 
+	public int getAcnumber() {
+		return acnumber;
+	}
+
+	public void setAcnumber(int acnumber) {
+		this.acnumber = acnumber;
+	}
+
+	public String getBankname() {
+		return bankname;
+	}
+
+	public void setBankname(String bankname) {
+		this.bankname = bankname;
+	}
+
+	public String getIdfc() {
+		return idfc;
+	}
+
+	public void setIdfc(String idfc) {
+		this.idfc = idfc;
+	}
+
 	public List<Orders> getOrders() {
 		return orders;
 	}
@@ -149,9 +181,4 @@ public class Users {
 		this.referrals = referrals;
 	}
 
-	
-	
-
-
-	
 }

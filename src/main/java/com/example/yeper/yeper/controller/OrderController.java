@@ -24,7 +24,7 @@ public class OrderController {
 	}
 
 	@GetMapping(path = "/getsingle/{id}")
-	public Orders getsingleorder(@PathVariable long id) {
+	public List<Orders> getsingleorder(@PathVariable long id) {
 		return this.order.getsingle(id);
 	}
 
