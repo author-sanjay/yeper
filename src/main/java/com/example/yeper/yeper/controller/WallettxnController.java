@@ -19,14 +19,19 @@ import com.example.yeper.yeper.services.WalletTxnServices;
 public class WallettxnController {
 	@Autowired
 	public WalletTxnServices wallettxnservice;
-	
+
 	@GetMapping(path = "/get")
-	public List<Wallet_transactions> get(){
+	public List<Wallet_transactions> get() {
 		return this.wallettxnservice.getall();
 	}
-	
-	@PostMapping(path="/add/{id}")
-	public Wallet_transactions add(@RequestBody Wallet_transactions txn,@PathVariable long id) {
+
+	@PostMapping(path = "/add/{id}")
+	public Wallet_transactions add(@RequestBody Wallet_transactions txn, @PathVariable long id) {
 		return this.wallettxnservice.add(txn, id);
+	}
+
+	@GetMapping(path = "getsingle/{id}")
+	public List<Wallet_transactions> getall(@PathVariable long id) {
+		return this.wallettxnservice.getsingle(id);
 	}
 }

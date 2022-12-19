@@ -20,7 +20,7 @@ public class Wallet_transactions {
 	
 	public boolean incoming;
 	
-	public float amount;
+	public long amount;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JsonIgnore
@@ -32,7 +32,7 @@ public class Wallet_transactions {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Wallet_transactions(long id, String date, boolean incoming, float amount, Wallet wallet) {
+	public Wallet_transactions(long id, String date, boolean incoming, long amount, Wallet wallet) {
 		super();
 		this.id = id;
 		this.date = date;
@@ -65,11 +65,11 @@ public class Wallet_transactions {
 		this.incoming = incoming;
 	}
 
-	public float getAmount() {
+	public long getAmount() {
 		return amount;
 	}
 
-	public void setAmount(float amount) {
+	public void setAmount(long amount) {
 		this.amount = amount;
 	}
 
@@ -80,6 +80,7 @@ public class Wallet_transactions {
 	public void setWallet(Wallet wallet) {
 		this.wallet = wallet;
 	}
+
 	
 		
 

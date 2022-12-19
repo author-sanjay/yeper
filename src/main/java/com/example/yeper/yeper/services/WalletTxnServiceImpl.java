@@ -23,6 +23,9 @@ public class WalletTxnServiceImpl implements WalletTxnServices{
 	@Autowired
 	public Walletdao walletdao;
 	
+	@Autowired
+	public UserDao userdao;
+	
 	@Override
 	public List<Wallet_transactions> getall() {
 		// TODO Auto-generated method stub
@@ -52,6 +55,19 @@ public class WalletTxnServiceImpl implements WalletTxnServices{
 		}else {
 			return null;
 		}
+	}
+
+	@Override
+	public List<Wallet_transactions> getsingle(long id) {
+		// TODO Auto-generated method stub
+		Optional<Users> user=userdao.findById(id);
+		if(user.isPresent()) {
+			Users user1=user.get();
+			Wallet wallet=user1.getWallet();
+			return wallet.getTxn();
+			
+		}
+		return null;
 	}
 
 }
