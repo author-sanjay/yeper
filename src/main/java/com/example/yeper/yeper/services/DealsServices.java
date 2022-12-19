@@ -13,4 +13,5 @@ public interface DealsServices {
 	public Deals update(long id, Deals deal);
 	
 	public List<Deals> getall();
+	public Deals markcomplete(long id);
 }

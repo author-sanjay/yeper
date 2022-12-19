@@ -31,9 +31,9 @@ public class OrderController {
 		return this.order.getsingle(id);
 	}
 	
-	@PostMapping(path = "/add/{id}")
-	public Orders add(@RequestBody Orders order,@PathVariable long id){
-		return this.order.add(order,id);
+	@PostMapping(path = "/add/{id}/{id2}")
+	public Orders add(@RequestBody Orders order,@PathVariable long id,@PathVariable long id2){
+		return this.order.add(order,id,id2);
 	}
 	
 	@PutMapping(path = "/update/{id}")

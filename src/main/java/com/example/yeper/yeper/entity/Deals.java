@@ -1,6 +1,5 @@
 package com.example.yeper.yeper.entity;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import java.util.List;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -8,8 +7,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Deals {
@@ -26,12 +24,16 @@ public class Deals {
 	public String photourl;
 	public int countleft;
 	public boolean active;
+	public String offerlink;
+	@OneToMany(mappedBy = "deals",cascade = CascadeType.ALL)
+	public List<Orders> orders;
+	
 	public Deals() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 	public Deals(long id, String product_name, String description, long actual_price, long offer_price, String card,
-			long user_earning, String photourl, int countleft, boolean active) {
+			long user_earning, String photourl, int countleft, boolean active, String offerlink, List<Orders> orders) {
 		super();
 		this.id = id;
 		this.product_name = product_name;
@@ -43,6 +45,8 @@ public class Deals {
 		this.photourl = photourl;
 		this.countleft = countleft;
 		this.active = active;
+		this.offerlink = offerlink;
+		this.orders = orders;
 	}
 	public long getId() {
 		return id;
@@ -101,9 +105,20 @@ public class Deals {
 	public boolean isActive() {
 		return active;
 	}
-	
 	public void setActive(boolean active) {
 		this.active = active;
+	}
+	public String getOfferlink() {
+		return offerlink;
+	}
+	public void setOfferlink(String offerlink) {
+		this.offerlink = offerlink;
+	}
+	public List<Orders> getOrders() {
+		return orders;
+	}
+	public void setOrders(List<Orders> orders) {
+		this.orders = orders;
 	}
 	
 	

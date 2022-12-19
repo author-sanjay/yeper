@@ -8,13 +8,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.yeper.yeper.dao.DealsDao;
+import com.example.yeper.yeper.dao.Ordersdao;
 import com.example.yeper.yeper.entity.Deals;
+import com.example.yeper.yeper.entity.Orders;
 
 @Service
 public class DealsServiceImpl implements DealsServices{
 
 	@Autowired
 	public DealsDao dealsdao;
+	
+	@Autowired
+	public Ordersdao orderdao;
 	
 	@Override
 	public Deals add(Deals deal) {
@@ -60,6 +65,27 @@ public class DealsServiceImpl implements DealsServices{
 	public List<Deals> getall() {
 		// TODO Auto-generated method stub
 		return dealsdao.findAll();
+	}
+
+	@Override
+	public Deals markcomplete(long id) {
+		// TODO Auto-generated method stub
+		Optional<Deals> deal=dealsdao.findById(id);
+		if(deal.isPresent()) {
+			Deals deal1=deal.get();
+			List<Orders> orderslist =deal1.getOrders();
+			for(int i=0;i<orderslist.size();i++) {
+				Optional<Orders> order =orderdao.findById(orderslist.get(i).getId());
+				if(order.isPresent()) {
+					Orders order2=order.get();
+					order2.setOrder_status("Completed");
+				}
+			}
+			
+			dealsdao.save(deal1);
+			return deal1;
+		}
+		return null;
 	}
 
 }

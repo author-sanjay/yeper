@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.example.yeper.yeper.entity.Deals;
 import com.example.yeper.yeper.services.DealsServices;
 
@@ -41,4 +40,11 @@ public class DealsController {
 	public boolean delete(@PathVariable long id) {
 		return this.deals.delete(id);
 	}
+	
+	@PutMapping(path="/complete/{id}")
+	public Deals complete(@PathVariable long id) {
+		return this.deals.markcomplete(id);
+	}
+	
+	
 }
