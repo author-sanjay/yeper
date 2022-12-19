@@ -1,7 +1,6 @@
 package com.example.yeper.yeper.controller;
 
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -10,9 +9,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.example.yeper.yeper.entity.Orders;
-import com.example.yeper.yeper.entity.Users;
 import com.example.yeper.yeper.services.OrdersSevices;
 
 @RequestMapping("/orders")
@@ -20,25 +17,25 @@ import com.example.yeper.yeper.services.OrdersSevices;
 public class OrderController {
 	@Autowired
 	public OrdersSevices order;
-	
+
 	@GetMapping(path = "/getall")
-	public List<Orders> getforuser(){
+	public List<Orders> getforuser() {
 		return this.order.getall();
 	}
-	
+
 	@GetMapping(path = "/getsingle/{id}")
-	public Orders getsingleorder(@PathVariable long id){
+	public Orders getsingleorder(@PathVariable long id) {
 		return this.order.getsingle(id);
 	}
-	
+
 	@PostMapping(path = "/add/{id}/{id2}")
-	public Orders add(@RequestBody Orders order,@PathVariable long id,@PathVariable long id2){
-		return this.order.add(order,id,id2);
+	public Orders add(@RequestBody Orders order, @PathVariable long id, @PathVariable long id2) {
+		return this.order.add(order, id, id2);
 	}
-	
+
 	@PutMapping(path = "/update/{id}")
-	public Orders add(@PathVariable long id, @RequestBody Orders order){
-		return this.order.update(id,order);
+	public Orders add(@PathVariable long id, @RequestBody Orders order) {
+		return this.order.update(id, order);
 	}
-	
+
 }
