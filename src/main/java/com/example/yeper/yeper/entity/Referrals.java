@@ -22,16 +22,19 @@ public class Referrals {
 	@JoinColumn(name = "user")
 	public Users user;
 
+	public String userid;
+
 	public Referrals() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Referrals(long id, String date, Users user) {
+	public Referrals(long id, String date, Users user, String userid) {
 		super();
 		this.id = id;
 		this.date = date;
 		this.user = user;
+		this.userid = userid;
 	}
 
 	public long getId() {
@@ -56,6 +59,14 @@ public class Referrals {
 
 	public void setUser(Users user) {
 		this.user = user;
+	}
+
+	public String getUserid() {
+		return userid;
+	}
+
+	public void setUserid(String userid) {
+		this.userid = userid;
 	}
 	
 	

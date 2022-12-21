@@ -4,6 +4,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.example.yeper.yeper.entity.Users;
 
-public interface UserDao extends JpaRepository<Users, Long>{
-	
+public interface UserDao extends JpaRepository<Users, Long> {
+	public Users findByReferalCode(String id);
 }

@@ -53,5 +53,16 @@ public class ReferralServiceImpl implements ReferralServices{
 		}
 	}
 
+	@Override
+	public Users finduser(long id) {
+		Optional<Referrals> ref=referraldao.findById(id);
+		if(ref.isPresent()) {
+			Referrals ref2=ref.get();
+			return ref2.getUser();
+		}
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 
 }

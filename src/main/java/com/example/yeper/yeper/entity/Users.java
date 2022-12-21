@@ -29,7 +29,7 @@ public class Users {
 
 	public boolean isuser;
 
-	public String referedby;
+	public String referralof;
 
 	public int acnumber;
 	public String bankname;
@@ -50,7 +50,7 @@ public class Users {
 	}
 
 	public Users(long id, String name, String email, String phonenumber, String address, String referalCode,
-			boolean isuser, String referedby, int acnumber, String bankname, String idfc, List<Orders> orders,
+			boolean isuser, String referralof, int acnumber, String bankname, String idfc, List<Orders> orders,
 			Wallet wallet, List<Referrals> referrals) {
 		super();
 		this.id = id;
@@ -60,7 +60,7 @@ public class Users {
 		this.address = address;
 		this.referalCode = referalCode;
 		this.isuser = isuser;
-		this.referedby = referedby;
+		this.referralof = referralof;
 		this.acnumber = acnumber;
 		this.bankname = bankname;
 		this.idfc = idfc;
@@ -125,12 +125,12 @@ public class Users {
 		this.isuser = isuser;
 	}
 
-	public String getReferedby() {
-		return referedby;
+	public String getReferralof() {
+		return referralof;
 	}
 
-	public void setReferedby(String referedby) {
-		this.referedby = referedby;
+	public void setReferralof(String referralof) {
+		this.referralof = referralof;
 	}
 
 	public int getAcnumber() {
@@ -181,4 +181,5 @@ public class Users {
 		this.referrals = referrals;
 	}
 
+	
 }
