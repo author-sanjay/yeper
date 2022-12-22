@@ -16,17 +16,17 @@ public class Orders {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public long id;
-
-	public String order_id;
-
+	
 	public String order_status;
 
 	public String product;
 
-	public int deal;
-	
 	public String date;
+	
+	public long deal;
 
+	public String platformtxnid;
+	
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JsonIgnore
 	@JoinColumn(name = "uid")
@@ -42,15 +42,15 @@ public class Orders {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Orders(long id, String order_id, String order_status, String product, int deal, String date, Users user,
-			Deals deals) {
+	public Orders(long id, String order_status, String product, String date, long deal, String platformtxnid,
+			Users user, Deals deals) {
 		super();
 		this.id = id;
-		this.order_id = order_id;
 		this.order_status = order_status;
 		this.product = product;
-		this.deal = deal;
 		this.date = date;
+		this.deal = deal;
+		this.platformtxnid = platformtxnid;
 		this.user = user;
 		this.deals = deals;
 	}
@@ -61,14 +61,6 @@ public class Orders {
 
 	public void setId(long id) {
 		this.id = id;
-	}
-
-	public String getOrder_id() {
-		return order_id;
-	}
-
-	public void setOrder_id(String order_id) {
-		this.order_id = order_id;
 	}
 
 	public String getOrder_status() {
@@ -87,20 +79,28 @@ public class Orders {
 		this.product = product;
 	}
 
-	public int getDeal() {
-		return deal;
-	}
-
-	public void setDeal(int deal) {
-		this.deal = deal;
-	}
-
 	public String getDate() {
 		return date;
 	}
 
 	public void setDate(String date) {
 		this.date = date;
+	}
+
+	public long getDeal() {
+		return deal;
+	}
+
+	public void setDeal(long deal) {
+		this.deal = deal;
+	}
+
+	public String getPlatformtxnid() {
+		return platformtxnid;
+	}
+
+	public void setPlatformtxnid(String platformtxnid) {
+		this.platformtxnid = platformtxnid;
 	}
 
 	public Users getUser() {
@@ -118,8 +118,6 @@ public class Orders {
 	public void setDeals(Deals deals) {
 		this.deals = deals;
 	}
-
-	
 
 	
 }

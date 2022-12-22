@@ -26,6 +26,7 @@ public class Deals {
 	public boolean active;
 	public String offerlink;
 	public String platform;
+	public String name;
 	@OneToMany(mappedBy = "deals",cascade = CascadeType.ALL)
 	public List<Orders> orders;
 	public Deals() {

@@ -17,34 +17,33 @@ import com.example.yeper.yeper.services.DealsServices;
 @RequestMapping("/deals")
 @RestController
 public class DealsController {
-	
+
 	@Autowired
 	public DealsServices deals;
-	
+
 	@GetMapping(path = "/getall")
-	public List<Deals> getall(){
+	public List<Deals> getall() {
 		return this.deals.getall();
 	}
-	
+
 	@PostMapping(path = "/add")
-	public Deals add(@RequestBody Deals deal){
+	public Deals add(@RequestBody Deals deal) {
 		return this.deals.add(deal);
 	}
-	
-	@PutMapping(path="/update/{id}")
-	public Deals update(@PathVariable long id, @RequestBody Deals deal ) {
-		return this.deals.update(id,deal);
+
+	@PutMapping(path = "/update/{id}")
+	public Deals update(@PathVariable long id, @RequestBody Deals deal) {
+		return this.deals.update(id, deal);
 	}
-	
-	@DeleteMapping(path="/delete/{id}")
+
+	@DeleteMapping(path = "/delete/{id}")
 	public boolean delete(@PathVariable long id) {
 		return this.deals.delete(id);
 	}
-	
-	@PutMapping(path="/complete/{id}")
+
+	@PutMapping(path = "/complete/{id}")
 	public Deals complete(@PathVariable long id) {
 		return this.deals.markcomplete(id);
 	}
-	
-	
+
 }
