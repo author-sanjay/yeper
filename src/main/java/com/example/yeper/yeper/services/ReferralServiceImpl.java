@@ -29,7 +29,7 @@ public class ReferralServiceImpl implements ReferralServices{
 	}
 
 	@Override
-	public Referrals add(Referrals referral,long id) {
+	public Referrals add(Referrals referral,String id) {
 		// TODO Auto-generated method stub
 		Optional<Users> user=userdao.findById(id);
 		if(user.isPresent()) {

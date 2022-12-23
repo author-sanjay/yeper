@@ -26,6 +26,11 @@ public class DealsController {
 		return this.deals.getall();
 	}
 
+	@GetMapping(path = "/getsingle/{id}")
+	public Deals getsingle(@PathVariable long id) {
+		return this.deals.getsingle(id);
+	}
+
 	@PostMapping(path = "/add")
 	public Deals add(@RequestBody Deals deal) {
 		return this.deals.add(deal);

@@ -9,13 +9,13 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
+import jakarta.persistence.SequenceGenerator;
 
 @Entity
 public class Users {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	public long id;
+	public String uid;
 
 	public String name;
 
@@ -31,8 +31,10 @@ public class Users {
 
 	public String referralof;
 
-	public int acnumber;
+	public String acnumber;
+	
 	public String bankname;
+	
 	public String idfc;
 
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
@@ -49,11 +51,11 @@ public class Users {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Users(long id, String name, String email, String phonenumber, String address, String referalCode,
-			boolean isuser, String referralof, int acnumber, String bankname, String idfc, List<Orders> orders,
+	public Users(String uid, String name, String email, String phonenumber, String address, String referalCode,
+			boolean isuser, String referralof, String acnumber, String bankname, String idfc, List<Orders> orders,
 			Wallet wallet, List<Referrals> referrals) {
 		super();
-		this.id = id;
+		this.uid = uid;
 		this.name = name;
 		this.email = email;
 		this.phonenumber = phonenumber;
@@ -69,12 +71,12 @@ public class Users {
 		this.referrals = referrals;
 	}
 
-	public long getId() {
-		return id;
+	public String getUid() {
+		return uid;
 	}
 
-	public void setId(long id) {
-		this.id = id;
+	public void setUid(String uid) {
+		this.uid = uid;
 	}
 
 	public String getName() {
@@ -133,11 +135,11 @@ public class Users {
 		this.referralof = referralof;
 	}
 
-	public int getAcnumber() {
+	public String getAcnumber() {
 		return acnumber;
 	}
 
-	public void setAcnumber(int acnumber) {
+	public void setAcnumber(String acnumber) {
 		this.acnumber = acnumber;
 	}
 
@@ -182,4 +184,5 @@ public class Users {
 	}
 
 	
+
 }

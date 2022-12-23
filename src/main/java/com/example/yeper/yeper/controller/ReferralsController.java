@@ -27,7 +27,7 @@ public class ReferralsController {
 	}
 	
 	@PostMapping(path = "/add/{id}")
-	public Referrals add(@RequestBody Referrals referrals,@PathVariable long id) {
+	public Referrals add(@RequestBody Referrals referrals,@PathVariable String id) {
 		return this.referservice.add(referrals, id);
 	}
 	

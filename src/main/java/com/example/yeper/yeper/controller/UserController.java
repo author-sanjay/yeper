@@ -27,23 +27,29 @@ public class UserController {
 		
 	}
 	
+	@GetMapping(path = "/getref/{id}")
+	public List<Users> getref(@PathVariable String id){
+		return this.user.getreferals(id);
+		
+	}
+	
 	@PostMapping(path="/add")
 	public Users add(@RequestBody Users user) {
 		return this.user.adduser(user);
 	}
 	
 	@PutMapping(path="/update/{id}")
-	public Users update(@PathVariable long id, @RequestBody Users user ) {
+	public Users update(@PathVariable String id, @RequestBody Users user ) {
 		return this.user.update(id,user);
 	}
 	
 	@DeleteMapping(path="/delete/{id}")
-	public boolean delete(@PathVariable long id) {
+	public boolean delete(@PathVariable String id) {
 		return this.user.delete(id);
 	}
 	
 	@GetMapping(path="/isuser/{id}")
-	public boolean checkuser(@PathVariable int id) {
+	public boolean checkuser(@PathVariable String id) {
 		return this.user.delete(id);
 	}
 

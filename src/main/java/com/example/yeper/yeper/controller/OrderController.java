@@ -27,7 +27,7 @@ public class OrderController {
 	}
 
 	@GetMapping(path = "/getsingle/{id}")
-	public List<Orders> getsingleuser(@PathVariable long id) {
+	public List<Orders> getsingleuser(@PathVariable String id) {
 		return this.order.getsingle(id);
 	}
 
@@ -37,7 +37,7 @@ public class OrderController {
 	}
 
 	@PostMapping(path = "/add/{id}/{id2}")
-	public Orders add(@RequestBody Orders order, @PathVariable long id, @PathVariable long id2) {
+	public Orders add(@RequestBody Orders order, @PathVariable String id, @PathVariable long id2) {
 		return this.order.add(order, id, id2);
 	}
 

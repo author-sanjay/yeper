@@ -26,12 +26,12 @@ public class WallettxnController {
 	}
 
 	@PostMapping(path = "/add/{id}")
-	public Wallet_transactions add(@RequestBody Wallet_transactions txn, @PathVariable long id) {
+	public Wallet_transactions add(@RequestBody Wallet_transactions txn, @PathVariable String id) {
 		return this.wallettxnservice.add(txn, id);
 	}
 
 	@GetMapping(path = "getsingle/{id}")
-	public List<Wallet_transactions> getall(@PathVariable long id) {
+	public List<Wallet_transactions> getall(@PathVariable String id) {
 		return this.wallettxnservice.getsingle(id);
 	}
 }

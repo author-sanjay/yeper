@@ -1,5 +1,6 @@
 package com.example.yeper.yeper.services;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.example.yeper.yeper.dao.UserDao;
 import com.example.yeper.yeper.entity.Referrals;
 import com.example.yeper.yeper.entity.Users;
+import com.example.yeper.yeper.entity.Wallet;
 
 @Service
 public class UserServiceImpl implements UserServices {
@@ -16,23 +18,29 @@ public class UserServiceImpl implements UserServices {
 	@Autowired
 	public UserDao userdao;
 
+	@Autowired
+	public ReferralServices refservice;
+	
+	@Autowired
+	public WalletServices walletservice;
+	
 	@Override
 	public Users adduser(Users user) {
-		Users user1 = userdao.findByReferalCode(user.getReferralof());
+//		Users user1 = userdao.findByReferalCode(user.getReferralof());
 
-		Referrals ref = new Referrals();
-		ref.setUser(user1);
-
-		List<Referrals> ref1 = user1.getReferrals();
-		ref1.add(ref);
-		user1.setReferrals(ref1);
-		userdao.save(user1);
+//		Referrals ref =new  Referrals();
+////		ref.setUser(user1);
+//		ref.setName(user.name);
+//		refservice.add(ref, user1.getUid());
+//		Wallet wal=new Wallet();
+//		wal.setUser(user);
+//		walletservice.add(wal);
 		userdao.save(user);
 		return user;
 	}
 
 	@Override
-	public Users update(long id, Users user) {
+	public Users update(String id, Users user) {
 		// TODO Auto-generated method stub
 		Optional<Users> user1 = userdao.findById(id);
 		if (user1.isPresent()) {
@@ -54,7 +62,7 @@ public class UserServiceImpl implements UserServices {
 	}
 
 	@Override
-	public Boolean delete(long id) {
+	public Boolean delete(String id) {
 		// TODO Auto-generated method stub
 		userdao.deleteById(id);
 		return true;
@@ -71,6 +79,24 @@ public class UserServiceImpl implements UserServices {
 		// TODO Auto-generated method stub
 		return userdao.findAll();
 
+	}
+
+	@Override
+	public List<Users> getreferals(String id) {
+		// TODO Auto-generated method stub
+		Optional<Users> user=userdao.findById(id);
+		if(user.isPresent()) {
+			Users user2=user.get();
+			List<Users> refe =new ArrayList<Users>();
+			List<Referrals> ref=user2.getReferrals();
+			for(int i=0;i<ref.size();i++) {
+				refe.add(ref.get(i).getUser());
+				
+			}
+			return refe;
+		}
+		
+		return null;
 	}
 
 }

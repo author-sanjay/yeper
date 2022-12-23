@@ -10,7 +10,8 @@ import com.example.yeper.yeper.entity.Users;
 public interface UserServices {
 	public List<Users> getall();
 	public Users adduser(Users user);
-	public Users update(long id, Users user);
-	public Boolean delete(long id);
+	public Users update(String id, Users user);
+	public Boolean delete(String id);
 	public Boolean isadmin(int id);
+	public List<Users> getreferals(String id);
 }

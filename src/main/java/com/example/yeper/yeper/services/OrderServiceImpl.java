@@ -27,7 +27,7 @@ public class OrderServiceImpl implements OrdersSevices {
 	public DealsDao dealsdao;
 
 	@Override
-	public Orders add(Orders order, long id, long id2) {
+	public Orders add(Orders order, String id, long id2) {
 		Optional<Users> user = userdao.findById(id);
 		Optional<Deals> deals = dealsdao.findById(id2);
 		if (user.isPresent() && deals.isPresent()) {
@@ -49,7 +49,7 @@ public class OrderServiceImpl implements OrdersSevices {
 	}
 
 	@Override
-	public List<Orders> getsingle(long id) {
+	public List<Orders> getsingle(String id) {
 		// TODO Auto-generated method stub
 		Optional<Users> user = userdao.findById(id);
 		if (user.isPresent()) {

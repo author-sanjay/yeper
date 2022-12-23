@@ -34,16 +34,27 @@ public class WalletTxnServiceImpl implements WalletTxnServices{
 	}
 
 	@Override
-	public Wallet_transactions add(Wallet_transactions txn, long id) {
+	public Wallet_transactions add(Wallet_transactions txn, String id) {
 		// TODO Auto-generated method stub
-		Optional<Wallet> wal=walletdao.findById(id);
-		if(wal.isPresent()) {
-			Wallet wal1=wal.get();
-			txn.setWallet(wal1);
+		Optional<Users> user=userdao.findById(id);
+		if(user.isPresent()) {
+			Users user2Users=user.get();
+			Wallet wallet=user2Users.getWallet();
+			txn.setWallet(wallet);
 			wallettxndao.save(txn);
 			return txn;
-		}else {
-		return null;}
+		}
+		else {
+			return null;
+		}
+//		Optional<Wallet> wal=walletdao.findById(id);
+//		if(wal.isPresent()) {
+//			Wallet wal1=wal.get();
+//			txn.setWallet(wal1);
+//			wallettxndao.save(txn);
+//			return txn;
+//		}else {
+//		return null;}
 	}
 
 	@Override
@@ -58,7 +69,7 @@ public class WalletTxnServiceImpl implements WalletTxnServices{
 	}
 
 	@Override
-	public List<Wallet_transactions> getsingle(long id) {
+	public List<Wallet_transactions> getsingle(String id) {
 		// TODO Auto-generated method stub
 		Optional<Users> user=userdao.findById(id);
 		if(user.isPresent()) {
