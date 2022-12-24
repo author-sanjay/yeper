@@ -53,4 +53,13 @@ public class UserController {
 		return this.user.delete(id);
 	}
 
+	@GetMapping(path="/getsingle/{id}")
+	public Users getsingle(@PathVariable String id) {
+		return this.user.getsingle(id);
+	}
+	
+	@GetMapping(path="/getwalletbalance/{id}")
+	public long getwallet(@PathVariable String id) {
+		return this.user.getwalletid(id);
+	}
 }

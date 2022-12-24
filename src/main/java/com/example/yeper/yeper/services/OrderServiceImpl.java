@@ -93,6 +93,7 @@ public class OrderServiceImpl implements OrdersSevices {
 		Optional<Orders> order1 = orderdao.findById(id);
 		if (order1.isPresent()) {
 			Orders order2 = order1.get();
+			// order2=order;
 			order2.setOrder_status(order.getOrder_status());
 			order2.setPlatformtxnid(order.getPlatformtxnid());
 			orderdao.save(order2);

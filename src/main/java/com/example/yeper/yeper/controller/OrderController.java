@@ -41,14 +41,19 @@ public class OrderController {
 		return this.order.add(order, id, id2);
 	}
 
-	@PutMapping(path = "/update/{id}")
-	public Orders add(@PathVariable long id) {
+	@PostMapping(path = "/update/{id}")
+	public Orders add(@PathVariable long id, @RequestBody Orders order) {
 		return this.order.complete(id);
 	}
 
 	@GetMapping(path = "/getdeal/{id}")
 	public Deals getdeal(@PathVariable long id) {
 		return this.order.getdeal(id);
+	}
+
+	@PostMapping(path = "/updatesingle/{id}")
+	public Orders update(@PathVariable long id, @RequestBody Orders order) {
+		return this.order.updatesingle(id,order);
 	}
 
 }

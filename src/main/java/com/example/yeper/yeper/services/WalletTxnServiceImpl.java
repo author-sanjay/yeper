@@ -40,7 +40,14 @@ public class WalletTxnServiceImpl implements WalletTxnServices{
 		if(user.isPresent()) {
 			Users user2Users=user.get();
 			Wallet wallet=user2Users.getWallet();
+			if(txn.isIncoming()) {
+				wallet.setBalance(wallet.balance+txn.getAmount());
+			}else {
+				wallet.setBalance(wallet.balance-txn.getAmount());
+			}
+			
 			txn.setWallet(wallet);
+			walletdao.save(wallet);
 			wallettxndao.save(txn);
 			return txn;
 		}

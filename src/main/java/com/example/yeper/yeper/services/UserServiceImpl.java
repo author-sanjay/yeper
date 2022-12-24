@@ -26,15 +26,16 @@ public class UserServiceImpl implements UserServices {
 	
 	@Override
 	public Users adduser(Users user) {
-//		Users user1 = userdao.findByReferalCode(user.getReferralof());
-
-//		Referrals ref =new  Referrals();
-////		ref.setUser(user1);
-//		ref.setName(user.name);
-//		refservice.add(ref, user1.getUid());
-//		Wallet wal=new Wallet();
-//		wal.setUser(user);
-//		walletservice.add(wal);
+	Users user1 = userdao.findByReferalCode(user.getReferralof());
+		if(user1!=null) {
+		Referrals ref =new  Referrals();
+		ref.setUser(user1);
+		ref.setName(user.name);
+		refservice.add(ref, user1.getUid());
+		}
+		Wallet wal=new Wallet();
+		wal.setUser(user);
+		user.setWallet(walletservice.add(wal));
 		userdao.save(user);
 		return user;
 	}
@@ -45,13 +46,13 @@ public class UserServiceImpl implements UserServices {
 		Optional<Users> user1 = userdao.findById(id);
 		if (user1.isPresent()) {
 			Users user2 = user1.get();
-			user2.setAddress(user.getAddress());
+//			user2.setAddress(user.getAddress());
 			user2.setEmail(user.getEmail());
-			user2.setName(user.getName());
-			user2.setReferralof(user.getReferralof());
+//			user2.setName(user.getName());
+//			user2.setReferralof(user.getReferralof());
 
 			user2.setPhonenumber(user.getPhonenumber());
-
+			user2.setPhoto(user.getPhoto());
 			user2.setAcnumber(user.getAcnumber());
 			user2.setBankname(user.getBankname());
 			user2.setIdfc(user.getIdfc());
@@ -97,6 +98,27 @@ public class UserServiceImpl implements UserServices {
 		}
 		
 		return null;
+	}
+
+	@Override
+	public Users getsingle(String id) {
+		// TODO Auto-generated method stub
+		Optional<Users> user=userdao.findById(id);
+		
+		return user.get();
+	}
+
+	@Override
+	public long getwalletid(String id) {
+		// TODO Auto-generated method stub
+		Optional<Users> user=userdao.findById(id);
+		if(user.isPresent()) {
+			Users user1=user.get();
+			long walid=user1.getWallet().getBalance();
+			
+			return walid;
+		}
+		return 0;
 	}
 
 }

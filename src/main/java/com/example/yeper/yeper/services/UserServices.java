@@ -14,4 +14,6 @@ public interface UserServices {
 	public Boolean delete(String id);
 	public Boolean isadmin(int id);
 	public List<Users> getreferals(String id);
+	public Users getsingle(String id);
+	public long getwalletid(String id);
 }

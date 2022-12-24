@@ -10,5 +10,5 @@ public interface WalletServices {
 	public Wallet add(Wallet wal);
 	public Wallet update(long id);
 	
-	
+//	public Wallet get(String id);
 }
