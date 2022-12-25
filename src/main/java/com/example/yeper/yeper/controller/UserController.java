@@ -68,4 +68,8 @@ public class UserController {
 	public List<Cards> getcards(@PathVariable String id) {
 		return this.user.usercards(id);
 	}
+	@PostMapping(path="/addcards/{id}")
+	public Users addcards(@PathVariable String id, @RequestBody Cards card) {
+		return this.user.addcard(id, card);
+	}
 }

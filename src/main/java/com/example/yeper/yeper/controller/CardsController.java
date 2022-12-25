@@ -22,4 +22,5 @@ public class CardsController {
 	public Cards add(@RequestBody Cards cards) {
 		return this.card.add(cards);
 	}
+	
 }

@@ -18,5 +18,5 @@ public interface UserServices {
 	public Users getsingle(String id);
 	public long getwalletid(String id);
 	public List<Cards> usercards(String id);
-	
+	public Users addcard(String id, Cards card);
 }
