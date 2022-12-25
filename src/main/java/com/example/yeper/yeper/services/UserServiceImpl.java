@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.yeper.yeper.dao.UserDao;
+import com.example.yeper.yeper.entity.Cards;
 import com.example.yeper.yeper.entity.Referrals;
 import com.example.yeper.yeper.entity.Users;
 import com.example.yeper.yeper.entity.Wallet;
@@ -119,6 +120,16 @@ public class UserServiceImpl implements UserServices {
 			return walid;
 		}
 		return 0;
+	}
+
+	@Override
+	public List<Cards> usercards(String id) {
+		// TODO Auto-generated method stub
+		Optional<Users> user=userdao.findById(id);
+		if(user.isPresent()) {
+			return user.get().cards;
+		}
+		return null;
 	}
 
 }

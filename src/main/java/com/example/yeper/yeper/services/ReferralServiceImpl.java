@@ -64,5 +64,16 @@ public class ReferralServiceImpl implements ReferralServices{
 		return null;
 	}
 
+	@Override
+	public List<Referrals> ofuser(String id) {
+		// TODO Auto-generated method stub
+		Optional<Users> user=userdao.findById(id);
+		if(user.isPresent()) {
+			return user.get().getReferrals();
+		}
+		
+		return null;
+	}
+
 
 }

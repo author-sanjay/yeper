@@ -13,5 +13,5 @@ public interface ReferralServices {
 	public Referrals findbyid(long id);
 	public Users finduser(long id);
 	public Referrals add(Referrals referral, String id); 
-	
+	public List<Referrals> ofuser(String id);
 }

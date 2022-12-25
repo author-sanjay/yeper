@@ -31,5 +31,10 @@ public class ReferralsController {
 		return this.referservice.add(referrals, id);
 	}
 	
+	@GetMapping(path="/ofuser/{id}")
+	public List<Referrals> get(@PathVariable String id){
+		return this.referservice.ofuser(id);
+	}
+	
 	
 }

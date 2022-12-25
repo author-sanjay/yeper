@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.yeper.yeper.entity.Cards;
 import com.example.yeper.yeper.entity.Users;
 import com.example.yeper.yeper.services.UserServices;
 
@@ -61,5 +62,10 @@ public class UserController {
 	@GetMapping(path="/getwalletbalance/{id}")
 	public long getwallet(@PathVariable String id) {
 		return this.user.getwalletid(id);
+	}
+	
+	@GetMapping(path="/getcards/{id}")
+	public List<Cards> getcards(@PathVariable String id) {
+		return this.user.usercards(id);
 	}
 }
