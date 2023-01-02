@@ -1,5 +1,7 @@
 package com.example.yeper.yeper.services;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,6 +25,19 @@ public class CardsServiceImpl implements CardServices{
 	public Cards update(Cards card) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public List<Cards> getall() {
+		// TODO Auto-generated method stub
+		
+		return carddao.findAll();
+	}
+
+	@Override
+	public List<Cards> getbyname(String name) {
+		// TODO Auto-generated method stub
+		return carddao.findByName(name);
 	}
 
 }
