@@ -27,5 +27,5 @@ public interface UserServices {
 
 	public List<Cards> usercards(String id);
 
-	public Users addcard(String id, long card);
+	public Users addcard(String id, String card);
 }

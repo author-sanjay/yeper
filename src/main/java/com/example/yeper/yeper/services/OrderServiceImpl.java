@@ -36,6 +36,11 @@ public class OrderServiceImpl implements OrdersSevices {
 			order.setUser(user1);
 			order.setDeals(deal2);
 			orderdao.save(order);
+			deal2.setCountleft(deal2.getCountleft() - 1);
+			if (deal2.getCountleft() == 0) {
+				deal2.setActive(false);
+			}
+			dealsdao.save(deal2);
 			return order;
 		} else {
 			return null;

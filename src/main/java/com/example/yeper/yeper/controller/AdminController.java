@@ -36,4 +36,14 @@ public class AdminController {
 	public Admin verify(@RequestBody Admin admin) {
 		return this.admin.verify(admin);
 	}
+
+	@GetMapping(path = "/total")
+	public Long totaluser() {
+		return this.admin.totaluser();
+	}
+
+	@GetMapping(path = "/active")
+	public Long actoveuser() {
+		return this.admin.activeusers();
+	}
 }

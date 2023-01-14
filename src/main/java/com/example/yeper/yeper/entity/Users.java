@@ -2,6 +2,8 @@ package com.example.yeper.yeper.entity;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -33,11 +35,11 @@ public class Users {
 	public String referralof;
 
 	public String acnumber;
-	
+
 	public String bankname;
-	
+
 	public String idfc;
-	
+
 	public String photo;
 
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
@@ -48,163 +50,164 @@ public class Users {
 
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
 	public List<Referrals> referrals;
-	
-@ManyToMany(cascade = CascadeType.ALL)
-public List<Cards> cards;
 
-public Users() {
-	super();
-	// TODO Auto-generated constructor stub
-}
+	@ManyToMany(cascade = CascadeType.ALL)
+	// @JsonIgnore
+	public List<Cards> cards;
 
-public Users(String uid, String name, String email, String phonenumber, String address, String referalCode,
-		boolean isuser, String referralof, String acnumber, String bankname, String idfc, String photo,
-		List<Orders> orders, Wallet wallet, List<Referrals> referrals, List<Cards> cards) {
-	super();
-	this.uid = uid;
-	this.name = name;
-	this.email = email;
-	this.phonenumber = phonenumber;
-	this.address = address;
-	this.referalCode = referalCode;
-	this.isuser = isuser;
-	this.referralof = referralof;
-	this.acnumber = acnumber;
-	this.bankname = bankname;
-	this.idfc = idfc;
-	this.photo = photo;
-	this.orders = orders;
-	this.wallet = wallet;
-	this.referrals = referrals;
-	this.cards = cards;
-}
+	public Users() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
-public String getUid() {
-	return uid;
-}
+	public Users(String uid, String name, String email, String phonenumber, String address, String referalCode,
+			boolean isuser, String referralof, String acnumber, String bankname, String idfc, String photo,
+			List<Orders> orders, Wallet wallet, List<Referrals> referrals, List<Cards> cards) {
+		super();
+		this.uid = uid;
+		this.name = name;
+		this.email = email;
+		this.phonenumber = phonenumber;
+		this.address = address;
+		this.referalCode = referalCode;
+		this.isuser = isuser;
+		this.referralof = referralof;
+		this.acnumber = acnumber;
+		this.bankname = bankname;
+		this.idfc = idfc;
+		this.photo = photo;
+		this.orders = orders;
+		this.wallet = wallet;
+		this.referrals = referrals;
+		this.cards = cards;
+	}
 
-public void setUid(String uid) {
-	this.uid = uid;
-}
+	public String getUid() {
+		return uid;
+	}
 
-public String getName() {
-	return name;
-}
+	public void setUid(String uid) {
+		this.uid = uid;
+	}
 
-public void setName(String name) {
-	this.name = name;
-}
+	public String getName() {
+		return name;
+	}
 
-public String getEmail() {
-	return email;
-}
+	public void setName(String name) {
+		this.name = name;
+	}
 
-public void setEmail(String email) {
-	this.email = email;
-}
+	public String getEmail() {
+		return email;
+	}
 
-public String getPhonenumber() {
-	return phonenumber;
-}
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
-public void setPhonenumber(String phonenumber) {
-	this.phonenumber = phonenumber;
-}
+	public String getPhonenumber() {
+		return phonenumber;
+	}
 
-public String getAddress() {
-	return address;
-}
+	public void setPhonenumber(String phonenumber) {
+		this.phonenumber = phonenumber;
+	}
 
-public void setAddress(String address) {
-	this.address = address;
-}
+	public String getAddress() {
+		return address;
+	}
 
-public String getReferalCode() {
-	return referalCode;
-}
+	public void setAddress(String address) {
+		this.address = address;
+	}
 
-public void setReferalCode(String referalCode) {
-	this.referalCode = referalCode;
-}
+	public String getReferalCode() {
+		return referalCode;
+	}
 
-public boolean isIsuser() {
-	return isuser;
-}
+	public void setReferalCode(String referalCode) {
+		this.referalCode = referalCode;
+	}
 
-public void setIsuser(boolean isuser) {
-	this.isuser = isuser;
-}
+	public boolean isIsuser() {
+		return isuser;
+	}
 
-public String getReferralof() {
-	return referralof;
-}
+	public void setIsuser(boolean isuser) {
+		this.isuser = isuser;
+	}
 
-public void setReferralof(String referralof) {
-	this.referralof = referralof;
-}
+	public String getReferralof() {
+		return referralof;
+	}
 
-public String getAcnumber() {
-	return acnumber;
-}
+	public void setReferralof(String referralof) {
+		this.referralof = referralof;
+	}
 
-public void setAcnumber(String acnumber) {
-	this.acnumber = acnumber;
-}
+	public String getAcnumber() {
+		return acnumber;
+	}
 
-public String getBankname() {
-	return bankname;
-}
+	public void setAcnumber(String acnumber) {
+		this.acnumber = acnumber;
+	}
 
-public void setBankname(String bankname) {
-	this.bankname = bankname;
-}
+	public String getBankname() {
+		return bankname;
+	}
 
-public String getIdfc() {
-	return idfc;
-}
+	public void setBankname(String bankname) {
+		this.bankname = bankname;
+	}
 
-public void setIdfc(String idfc) {
-	this.idfc = idfc;
-}
+	public String getIdfc() {
+		return idfc;
+	}
 
-public String getPhoto() {
-	return photo;
-}
+	public void setIdfc(String idfc) {
+		this.idfc = idfc;
+	}
 
-public void setPhoto(String photo) {
-	this.photo = photo;
-}
+	public String getPhoto() {
+		return photo;
+	}
 
-public List<Orders> getOrders() {
-	return orders;
-}
+	public void setPhoto(String photo) {
+		this.photo = photo;
+	}
 
-public void setOrders(List<Orders> orders) {
-	this.orders = orders;
-}
+	public List<Orders> getOrders() {
+		return orders;
+	}
 
-public Wallet getWallet() {
-	return wallet;
-}
+	public void setOrders(List<Orders> orders) {
+		this.orders = orders;
+	}
 
-public void setWallet(Wallet wallet) {
-	this.wallet = wallet;
-}
+	public Wallet getWallet() {
+		return wallet;
+	}
 
-public List<Referrals> getReferrals() {
-	return referrals;
-}
+	public void setWallet(Wallet wallet) {
+		this.wallet = wallet;
+	}
 
-public void setReferrals(List<Referrals> referrals) {
-	this.referrals = referrals;
-}
+	public List<Referrals> getReferrals() {
+		return referrals;
+	}
 
-public List<Cards> getCards() {
-	return cards;
-}
+	public void setReferrals(List<Referrals> referrals) {
+		this.referrals = referrals;
+	}
 
-public void setCards(List<Cards> cards) {
-	this.cards = cards;
-}
+	public List<Cards> getCards() {
+		return cards;
+	}
+
+	public void setCards(List<Cards> cards) {
+		this.cards = cards;
+	}
 
 }

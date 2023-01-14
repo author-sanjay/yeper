@@ -21,55 +21,56 @@ import com.example.yeper.yeper.services.UserServices;
 public class UserController {
 	@Autowired
 	public UserServices user;
-	
+
 	@GetMapping(path = "/getall")
-	public List<Users> getall(){
+	public List<Users> getall() {
 		return this.user.getall();
-		
+
 	}
-	
+
 	@GetMapping(path = "/getref/{id}")
-	public List<Users> getref(@PathVariable String id){
+	public List<Users> getref(@PathVariable String id) {
 		return this.user.getreferals(id);
-		
+
 	}
-	
-	@PostMapping(path="/add")
+
+	@PostMapping(path = "/add")
 	public Users add(@RequestBody Users user) {
 		return this.user.adduser(user);
 	}
-	
-	@PutMapping(path="/update/{id}")
-	public Users update(@PathVariable String id, @RequestBody Users user ) {
-		return this.user.update(id,user);
+
+	@PutMapping(path = "/update/{id}")
+	public Users update(@PathVariable String id, @RequestBody Users user) {
+		return this.user.update(id, user);
 	}
-	
-	@DeleteMapping(path="/delete/{id}")
+
+	@DeleteMapping(path = "/delete/{id}")
 	public boolean delete(@PathVariable String id) {
 		return this.user.delete(id);
 	}
-	
-	@GetMapping(path="/isuser/{id}")
+
+	@GetMapping(path = "/isuser/{id}")
 	public boolean checkuser(@PathVariable String id) {
 		return this.user.delete(id);
 	}
 
-	@GetMapping(path="/getsingle/{id}")
+	@GetMapping(path = "/getsingle/{id}")
 	public Users getsingle(@PathVariable String id) {
 		return this.user.getsingle(id);
 	}
-	
-	@GetMapping(path="/getwalletbalance/{id}")
+
+	@GetMapping(path = "/getwalletbalance/{id}")
 	public long getwallet(@PathVariable String id) {
 		return this.user.getwalletid(id);
 	}
-	
-	@GetMapping(path="/getcards/{id}")
+
+	@GetMapping(path = "/getcards/{id}")
 	public List<Cards> getcards(@PathVariable String id) {
 		return this.user.usercards(id);
 	}
-	@PostMapping(path="/addcards/{id}")
-	public Users addcards(@PathVariable String id, @RequestBody Cards card) {
-		return this.user.addcard(id, card);
+
+	@PostMapping(path = "/addcards/{id}/{id2}")
+	public Users addcards(@PathVariable String id, @PathVariable String id2) {
+		return this.user.addcard(id, id2);
 	}
 }

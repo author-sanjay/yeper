@@ -2,6 +2,8 @@ package com.example.yeper.yeper.entity;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -16,8 +18,9 @@ public class Cards {
 	public int id;
 	public String name;
 	public String photo;
-	
+
 	@ManyToMany(cascade = CascadeType.ALL)
+	@JsonIgnore
 	public List<Users> users;
 
 	public Cards() {
@@ -64,10 +67,5 @@ public class Cards {
 	public void setUsers(List<Users> users) {
 		this.users = users;
 	}
-	
-	
-	
-	
-	
 
 }

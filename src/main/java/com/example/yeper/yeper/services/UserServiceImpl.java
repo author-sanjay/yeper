@@ -137,13 +137,14 @@ public class UserServiceImpl implements UserServices {
 	}
 
 	@Override
-	public Users addcard(String id, long card) {
+	public Users addcard(String id, String card) {
 		// TODO Auto-generated method stub
 		Optional<Users> user = userdao.findById(id);
 		if (user.isPresent()) {
 			Users user2 = user.get();
 			List<Cards> cards = user2.getCards();
-			// Optional<Cards>=carddao.findById(card);
+			Optional<Cards> card1 = carddao.findById(Integer.parseInt(card));
+			cards.add(card1.get());
 			// cards.add(card);
 			user2.setCards(cards);
 			userdao.save(user2);

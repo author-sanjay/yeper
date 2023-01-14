@@ -13,5 +13,11 @@ public interface AdminService {
 	public List<Admin> getall();
 
 	public Admin verify(Admin admin);
+	
+	public long totaluser();
+	public long activeusers();
+	public long activedeals();
+	public long earning();
+	public long completeddeals();
 
 }
