@@ -11,6 +11,7 @@ import com.example.yeper.yeper.dao.Admindao;
 import com.example.yeper.yeper.dao.DealsDao;
 import com.example.yeper.yeper.dao.UserDao;
 import com.example.yeper.yeper.entity.Admin;
+import com.example.yeper.yeper.entity.Deals;
 import com.example.yeper.yeper.entity.Users;
 
 @Service
@@ -72,7 +73,8 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public long activedeals() {
 		// TODO Auto-generated method stub
-		return 0;
+		List<Deals> deals = dealsDao.findByActive(true);
+		return deals.size();
 	}
 
 	@Override
@@ -84,7 +86,8 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public long completeddeals() {
 		// TODO Auto-generated method stub
-		return 0;
+		List<Deals> deals = dealsDao.findByActive(false);
+		return deals.size();
 	}
 
 }

@@ -19,4 +19,6 @@ public interface DealsServices {
 	public Deals markcomplete(long id);
 
 	public Deals getsingle(long id);
+
+	public List<Deals> getActive();
 }

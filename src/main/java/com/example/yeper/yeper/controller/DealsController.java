@@ -51,4 +51,8 @@ public class DealsController {
 		return this.deals.markcomplete(id);
 	}
 
+	@GetMapping(path = "/getactive")
+	public List<Deals> active() {
+		return this.deals.getActive();
+	}
 }

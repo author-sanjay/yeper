@@ -96,4 +96,11 @@ public class DealsServiceImpl implements DealsServices {
 		return null;
 	}
 
+	@Override
+	public List<Deals> getActive() {
+		// TODO Auto-generated method stub
+
+		return dealsdao.findByActive(true);
+	}
+
 }
