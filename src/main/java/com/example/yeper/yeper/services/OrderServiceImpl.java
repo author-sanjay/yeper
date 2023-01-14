@@ -1,5 +1,7 @@
 package com.example.yeper.yeper.services;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Optional;
 
@@ -13,6 +15,7 @@ import com.example.yeper.yeper.dao.UserDao;
 import com.example.yeper.yeper.entity.Deals;
 import com.example.yeper.yeper.entity.Orders;
 import com.example.yeper.yeper.entity.Users;
+import com.example.yeper.yeper.entity.Wallet_transactions;
 
 @Service
 public class OrderServiceImpl implements OrdersSevices {
@@ -25,6 +28,9 @@ public class OrderServiceImpl implements OrdersSevices {
 
 	@Autowired
 	public DealsDao dealsdao;
+
+	@Autowired
+	public WalletTxnServices walletTxnServices;
 
 	@Override
 	public Orders add(Orders order, String id, long id2) {
@@ -72,6 +78,23 @@ public class OrderServiceImpl implements OrdersSevices {
 		if (order1.isPresent()) {
 			Orders order2 = order1.get();
 			order2.setOrder_status("Completed");
+			Users user = order2.getUser();
+			Deals deal = order2.getDeals();
+			Wallet_transactions wal = new Wallet_transactions();
+			wal.setAmount(deal.getOffer_price());
+			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+			LocalDateTime now = LocalDateTime.now();
+			wal.setDate(now.toString());
+			wal.setIncoming(true);
+			walletTxnServices.add(wal, user.getUid());
+			Wallet_transactions wal2 = new Wallet_transactions();
+			long walamaount = (long) ((long) deal.getOffer_price() * 0.1);
+			wal2.setAmount(walamaount);
+			wal2.setDate(now.toString());
+			wal.setIncoming(true);
+			Users user2 = userdao.findByReferalCode(user.getReferralof());
+			walletTxnServices.add(wal2, user2.getUid());
+
 			orderdao.save(order2);
 			return order2;
 		} else {
