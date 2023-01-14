@@ -46,4 +46,14 @@ public class AdminController {
 	public Long actoveuser() {
 		return this.admin.activeusers();
 	}
+
+	@GetMapping(path = "/dealsactive")
+	public Long activedeals() {
+		return this.admin.activedeals();
+	}
+
+	@GetMapping(path = "/dealscomplete")
+	public Long notactivedeals() {
+		return this.admin.completeddeals();
+	}
 }
