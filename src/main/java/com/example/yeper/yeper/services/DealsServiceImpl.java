@@ -1,15 +1,24 @@
 package com.example.yeper.yeper.services;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
+import javax.xml.crypto.Data;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Service;
 
 import com.example.yeper.yeper.dao.DealsDao;
 import com.example.yeper.yeper.dao.Ordersdao;
 import com.example.yeper.yeper.entity.Deals;
 import com.example.yeper.yeper.entity.Orders;
+import com.example.yeper.yeper.entity.Users;
+import com.example.yeper.yeper.entity.Wallet;
+import com.example.yeper.yeper.entity.Wallet_transactions;
 
 @Service
 public class DealsServiceImpl implements DealsServices {
@@ -19,6 +28,9 @@ public class DealsServiceImpl implements DealsServices {
 
 	@Autowired
 	public Ordersdao orderdao;
+
+	@Autowired
+	public WalletTxnServices walletTxnServices;
 
 	@Override
 	public Deals add(Deals deal) {
@@ -77,6 +89,16 @@ public class DealsServiceImpl implements DealsServices {
 				if (order.isPresent()) {
 					Orders order2 = order.get();
 					order2.setOrder_status("Completed");
+					Users user = order2.getUser();
+					Wallet_transactions wal = new Wallet_transactions();
+					wal.setAmount(deal1.offer_price);
+					DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+					LocalDateTime now = LocalDateTime.now();
+					wal.setDate(now.toString());
+					wal.setIncoming(true);
+					walletTxnServices.add(wal, user.getUid());
+					
+
 				}
 			}
 
