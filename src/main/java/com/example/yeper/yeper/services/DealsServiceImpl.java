@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.yeper.yeper.dao.DealsDao;
 import com.example.yeper.yeper.dao.Ordersdao;
+import com.example.yeper.yeper.dao.UserDao;
 import com.example.yeper.yeper.entity.Deals;
 import com.example.yeper.yeper.entity.Orders;
 import com.example.yeper.yeper.entity.Users;
@@ -31,6 +32,9 @@ public class DealsServiceImpl implements DealsServices {
 
 	@Autowired
 	public WalletTxnServices walletTxnServices;
+
+	@Autowired
+	public UserDao userDao;
 
 	@Override
 	public Deals add(Deals deal) {
@@ -97,7 +101,13 @@ public class DealsServiceImpl implements DealsServices {
 					wal.setDate(now.toString());
 					wal.setIncoming(true);
 					walletTxnServices.add(wal, user.getUid());
-					
+					Wallet_transactions wal2 = new Wallet_transactions();
+					long walamaount = (long) ((long) deal1.getOffer_price() * 0.1);
+					wal2.setAmount(walamaount);
+					wal2.setDate(now.toString());
+					wal.setIncoming(true);
+					Users user2 = userDao.findByReferalCode(user.getReferralof());
+					walletTxnServices.add(wal2, user2.getUid());
 
 				}
 			}
