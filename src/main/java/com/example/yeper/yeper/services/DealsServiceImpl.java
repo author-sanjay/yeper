@@ -34,6 +34,9 @@ public class DealsServiceImpl implements DealsServices {
 	public WalletTxnServices walletTxnServices;
 
 	@Autowired
+	public AdminService adminService;
+
+	@Autowired
 	public UserDao userDao;
 
 	@Override
@@ -101,14 +104,24 @@ public class DealsServiceImpl implements DealsServices {
 					wal.setDate(now.toString());
 					wal.setIncoming(true);
 					walletTxnServices.add(wal, user.getUid());
+
 					Wallet_transactions wal2 = new Wallet_transactions();
 					long walamaount = (long) ((long) deal1.getOffer_price() * 0.1);
 					wal2.setAmount(walamaount);
 					wal2.setDate(now.toString());
 					wal.setIncoming(true);
-					Users user2 = userDao.findByReferalCode(user.getReferralof());
-					walletTxnServices.add(wal2, user2.getUid());
-
+					try{if (user.getReferralof() != null) {
+						Users user2 = userDao.findByReferalCode(user.getReferralof());
+						if (user2.getUid() != null) {
+							walletTxnServices.add(wal2, user2.getUid());
+						} else {
+							continue;
+						}
+					}}
+					catch (Exception e){
+System.out.println(e);
+					}
+					adminService.updateearning((long) ((long) deal1.offer_price * 0.4));
 				}
 			}
 

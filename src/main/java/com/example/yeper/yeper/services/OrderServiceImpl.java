@@ -30,6 +30,9 @@ public class OrderServiceImpl implements OrdersSevices {
 	public DealsDao dealsdao;
 
 	@Autowired
+	public AdminService adminService;
+
+	@Autowired
 	public WalletTxnServices walletTxnServices;
 
 	@Override
@@ -94,7 +97,7 @@ public class OrderServiceImpl implements OrdersSevices {
 			wal.setIncoming(true);
 			Users user2 = userdao.findByReferalCode(user.getReferralof());
 			walletTxnServices.add(wal2, user2.getUid());
-
+			adminService.updateearning((long) ((long) deal.offer_price * 0.4));
 			orderdao.save(order2);
 			return order2;
 		} else {

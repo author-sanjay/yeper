@@ -56,4 +56,9 @@ public class AdminController {
 	public Long notactivedeals() {
 		return this.admin.completeddeals();
 	}
+
+	@GetMapping(path = "/balance")
+	public Long balanceLong() {
+		return this.admin.earning();
+	}
 }

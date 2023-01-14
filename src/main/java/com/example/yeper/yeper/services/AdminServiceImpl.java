@@ -80,6 +80,11 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public long earning() {
 		// TODO Auto-generated method stub
+		Optional<Admin> admin = admindao.findById((long) 1);
+		if (admin.isPresent()) {
+			Admin admin2 = admin.get();
+			return admin2.getEarning();
+		}
 		return 0;
 	}
 
@@ -88,6 +93,20 @@ public class AdminServiceImpl implements AdminService {
 		// TODO Auto-generated method stub
 		List<Deals> deals = dealsDao.findByActive(false);
 		return deals.size();
+	}
+
+	@Override
+	public long updateearning(long amount) {
+		// TODO Auto-generated method stub
+		Optional<Admin> admin = admindao.findById((long) 1);
+		if (admin.isPresent()) {
+			Admin admin2 = admin.get();
+			admin2.setEarning(admin2.getEarning() + amount);
+			admindao.save(admin2);
+			return admin2.getEarning();
+		}
+
+		return 0;
 	}
 
 }
