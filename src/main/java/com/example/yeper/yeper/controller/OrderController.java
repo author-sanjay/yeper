@@ -41,8 +41,8 @@ public class OrderController {
 		return this.order.add(order, id, id2);
 	}
 
-	@PostMapping(path = "/update/{id}")
-	public Orders add(@PathVariable long id, @RequestBody Orders order) {
+	@PutMapping(path = "/update/{id}")
+	public Orders add(@PathVariable long id) {
 		return this.order.complete(id);
 	}
 
@@ -53,7 +53,7 @@ public class OrderController {
 
 	@PostMapping(path = "/updatesingle/{id}")
 	public Orders update(@PathVariable long id, @RequestBody Orders order) {
-		return this.order.updatesingle(id,order);
+		return this.order.updatesingle(id, order);
 	}
 
 }

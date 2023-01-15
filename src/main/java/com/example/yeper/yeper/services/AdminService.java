@@ -25,5 +25,7 @@ public interface AdminService {
 	public long completeddeals();
 
 	public long updateearning(long amount);
+	
+	public Admin delete(long id);
 
 }

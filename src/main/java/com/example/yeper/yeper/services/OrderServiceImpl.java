@@ -5,6 +5,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Optional;
 
+import org.apache.tomcat.util.net.TLSClientHelloExtractor.ExtractorResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.util.Pair;
 import org.springframework.stereotype.Service;
@@ -37,8 +38,10 @@ public class OrderServiceImpl implements OrdersSevices {
 
 	@Override
 	public Orders add(Orders order, String id, long id2) {
+
 		Optional<Users> user = userdao.findById(id);
 		Optional<Deals> deals = dealsdao.findById(id2);
+
 		if (user.isPresent() && deals.isPresent()) {
 			Users user1 = user.get();
 			Deals deal2 = deals.get();
@@ -95,9 +98,13 @@ public class OrderServiceImpl implements OrdersSevices {
 			wal2.setAmount(walamaount);
 			wal2.setDate(now.toString());
 			wal.setIncoming(true);
-			Users user2 = userdao.findByReferalCode(user.getReferralof());
-			walletTxnServices.add(wal2, user2.getUid());
-			adminService.updateearning((long) ((long) deal.offer_price * 0.4));
+			try {
+				Users user2 = userdao.findByReferalCode(user.getReferralof());
+				walletTxnServices.add(wal2, user2.getUid());
+				adminService.updateearning((long) ((long) deal.offer_price * 0.4));
+			} catch (Exception e) {
+				System.err.println("Error");
+			}
 			orderdao.save(order2);
 			return order2;
 		} else {

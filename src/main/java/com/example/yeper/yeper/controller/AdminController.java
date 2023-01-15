@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -60,5 +61,10 @@ public class AdminController {
 	@GetMapping(path = "/balance")
 	public Long balanceLong() {
 		return this.admin.earning();
+	}
+
+	@DeleteMapping(path = "/delete/{id}")
+	public Admin delete(@PathVariable long id) {
+		return this.admin.delete(id);
 	}
 }

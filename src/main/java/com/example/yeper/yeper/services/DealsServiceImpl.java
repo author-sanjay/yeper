@@ -50,7 +50,7 @@ public class DealsServiceImpl implements DealsServices {
 	public boolean delete(long id) {
 		// TODO Auto-generated method stub
 
-		dealsdao.deleteById(id);
+		Optional<Deals> deals = dealsdao.findById(id);
 		return true;
 	}
 
@@ -110,21 +110,23 @@ public class DealsServiceImpl implements DealsServices {
 					wal2.setAmount(walamaount);
 					wal2.setDate(now.toString());
 					wal.setIncoming(true);
-					try{if (user.getReferralof() != null) {
-						Users user2 = userDao.findByReferalCode(user.getReferralof());
-						if (user2.getUid() != null) {
-							walletTxnServices.add(wal2, user2.getUid());
-						} else {
-							continue;
+					try {
+						if (user.getReferralof() != null) {
+							Users user2 = userDao.findByReferalCode(user.getReferralof());
+							if (user2.getUid() != null) {
+								walletTxnServices.add(wal2, user2.getUid());
+							} else {
+								continue;
+							}
 						}
-					}}
-					catch (Exception e){
-System.out.println(e);
+					} catch (Exception e) {
+						System.out.println(e);
 					}
 					adminService.updateearning((long) ((long) deal1.offer_price * 0.4));
 				}
 			}
 
+			deal1.setActive(false);
 			dealsdao.save(deal1);
 			return deal1;
 		}

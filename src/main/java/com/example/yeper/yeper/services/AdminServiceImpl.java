@@ -109,4 +109,16 @@ public class AdminServiceImpl implements AdminService {
 		return 0;
 	}
 
+	@Override
+	public Admin delete(long id) {
+		// TODO Auto-generated method stub
+		Optional<Admin> admin = admindao.findById(id);
+		if (admin.isPresent()) {
+			Admin admin2 = admin.get();
+			admindao.delete(admin2);
+			return admin2;
+		}
+		return null;
+	}
+
 }
