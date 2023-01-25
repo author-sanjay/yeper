@@ -122,7 +122,7 @@ public class DealsServiceImpl implements DealsServices {
 					} catch (Exception e) {
 						System.out.println(e);
 					}
-					adminService.updateearning((long) ((long) deal1.offer_price * 0.4));
+					adminService.updateearning((long) ((long) deal1.user_earning * 0.4));
 				}
 			}
 
