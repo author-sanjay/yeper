@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.example.yeper.yeper.dao.Cardsdao;
@@ -41,6 +42,8 @@ public class UserServiceImpl implements UserServices {
 		Wallet wal = new Wallet();
 		wal.setUser(user);
 		user.setWallet(walletservice.add(wal));
+		user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
+		user.setRole("ROLE_USER");
 		userdao.save(user);
 		return user;
 	}
@@ -143,6 +146,8 @@ public class UserServiceImpl implements UserServices {
 		if (user.isPresent()) {
 			Users user2 = user.get();
 			List<Cards> cards = user2.getCards();
+			Boolean flag = false;
+
 			Optional<Cards> card1 = carddao.findById(Integer.parseInt(card));
 			cards.add(card1.get());
 			// cards.add(card);

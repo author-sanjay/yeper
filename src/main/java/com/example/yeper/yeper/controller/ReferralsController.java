@@ -3,6 +3,7 @@ package com.example.yeper.yeper.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,16 +23,19 @@ public class ReferralsController {
 	public ReferralServices referservice;
 	
 	@GetMapping(path = "/get")
+	@PreAuthorize("hasAnyRole('ROLE_USER','ROLE_ADMIN')")
 	public List<Referrals> getall(){
 		return this.referservice.getall();
 	}
 	
 	@PostMapping(path = "/add/{id}")
+	@PreAuthorize("hasAnyRole('ROLE_USER','ROLE_ADMIN')")
 	public Referrals add(@RequestBody Referrals referrals,@PathVariable String id) {
 		return this.referservice.add(referrals, id);
 	}
 	
 	@GetMapping(path="/ofuser/{id}")
+	@PreAuthorize("hasAnyRole('ROLE_USER','ROLE_ADMIN')")
 	public List<Referrals> get(@PathVariable String id){
 		return this.referservice.ofuser(id);
 	}

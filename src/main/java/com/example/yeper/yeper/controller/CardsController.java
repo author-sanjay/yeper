@@ -3,6 +3,7 @@ package com.example.yeper.yeper.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,6 +23,7 @@ public class CardsController {
 	public CardServices card;
 
 	@PostMapping(path = "/add")
+	@PreAuthorize("hasAuthority('ROLE_ADMIN')")
 	public Cards add(@RequestBody Cards cards) {
 		return this.card.add(cards);
 	}
@@ -32,11 +34,13 @@ public class CardsController {
 	// }
 
 	@GetMapping(path = "/getall")
+	@PreAuthorize("hasAuthority('ROLE_ADMIN')")
 	public List<Cards> getall() {
 		return this.card.getall();
 	}
 
 	@GetMapping(path = "/getbyname/{id}")
+	@PreAuthorize("hasAuthority('ROLE_ADMIN')")
 	public List<Cards> getbyname(@PathVariable String id) {
 		return this.card.getbyname(id);
 	}

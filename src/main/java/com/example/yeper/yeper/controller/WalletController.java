@@ -1,6 +1,7 @@
 package com.example.yeper.yeper.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,11 +21,13 @@ public class WalletController {
 	public WalletServices wallet;
 	
 	@PostMapping(path = "/add/{$}")
+	@PreAuthorize("hasAnyRole('ROLE_USER','ROLE_ADMIN')")
 	public Wallet add(@RequestBody Wallet wal) {
 		return this.wallet.add(wal);
 	}
 	
 	@PutMapping(path="/update/{id}")
+	@PreAuthorize("hasAnyRole('ROLE_USER','ROLE_ADMIN')")
 	public Wallet update(@PathVariable long id) {
 		return this.wallet.update(id);
 	}

@@ -20,6 +20,8 @@ public class Users {
 	@Id
 	public String uid;
 
+	public String password;
+	public String role;
 	public String name;
 
 	public String email;
@@ -60,11 +62,11 @@ public class Users {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Users(String uid, String name, String email, String phonenumber, String address, String referalCode,
-			boolean isuser, String referralof, String acnumber, String bankname, String idfc, String photo,
-			List<Orders> orders, Wallet wallet, List<Referrals> referrals, List<Cards> cards) {
-		super();
+
+	public Users(String uid, String password, String role, String name, String email, String phonenumber, String address, String referalCode, boolean isuser, String referralof, String acnumber, String bankname, String idfc, String photo, List<Orders> orders, Wallet wallet, List<Referrals> referrals, List<Cards> cards) {
 		this.uid = uid;
+		this.password = password;
+		this.role = role;
 		this.name = name;
 		this.email = email;
 		this.phonenumber = phonenumber;
@@ -88,6 +90,22 @@ public class Users {
 
 	public void setUid(String uid) {
 		this.uid = uid;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
 	}
 
 	public String getName() {
@@ -209,5 +227,4 @@ public class Users {
 	public void setCards(List<Cards> cards) {
 		this.cards = cards;
 	}
-
 }
