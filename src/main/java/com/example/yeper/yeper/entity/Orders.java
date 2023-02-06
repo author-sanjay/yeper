@@ -24,6 +24,7 @@ public class Orders {
 	public String date;
 	
 	public long deal;
+	public long otp;
 
 	public String platformtxnid;
 	
@@ -42,14 +43,13 @@ public class Orders {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Orders(long id, String order_status, String product, String date, long deal, String platformtxnid,
-			Users user, Deals deals) {
-		super();
+	public Orders(long id, String order_status, String product, String date, long deal, long otp, String platformtxnid, Users user, Deals deals) {
 		this.id = id;
 		this.order_status = order_status;
 		this.product = product;
 		this.date = date;
 		this.deal = deal;
+		this.otp = otp;
 		this.platformtxnid = platformtxnid;
 		this.user = user;
 		this.deals = deals;
@@ -95,6 +95,14 @@ public class Orders {
 		this.deal = deal;
 	}
 
+	public long getOtp() {
+		return otp;
+	}
+
+	public void setOtp(long otp) {
+		this.otp = otp;
+	}
+
 	public String getPlatformtxnid() {
 		return platformtxnid;
 	}
@@ -118,6 +126,5 @@ public class Orders {
 	public void setDeals(Deals deals) {
 		this.deals = deals;
 	}
-
-	
 }
+

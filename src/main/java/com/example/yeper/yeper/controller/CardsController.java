@@ -34,7 +34,7 @@ public class CardsController {
 	// }
 
 	@GetMapping(path = "/getall")
-	@PreAuthorize("hasAuthority('ROLE_ADMIN')")
+	@PreAuthorize("hasAnyAuthority('ROLE_USER','ROLE_ADMIN')")
 	public List<Cards> getall() {
 		return this.card.getall();
 	}

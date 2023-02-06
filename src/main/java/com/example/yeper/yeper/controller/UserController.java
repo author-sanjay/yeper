@@ -1,7 +1,9 @@
 package com.example.yeper.yeper.controller;
 
 import java.util.List;
+import java.util.Optional;
 
+import com.example.yeper.yeper.dao.UserDao;
 import com.example.yeper.yeper.entity.AuthRequest;
 import com.example.yeper.yeper.entity.JwtService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +36,9 @@ public class UserController {
 
 	@Autowired
 	public UserServices user;
-	
+	@Autowired
+	private UserDao userDao;
+
 	@GetMapping(path="/test")
 	public String test() {
 		return "Running...";
@@ -104,11 +108,11 @@ public class UserController {
 	}
 
 
-	@PostMapping("/authenticate")
-	public String authenticateAndGetToken(@RequestBody AuthRequest authRequest){
-		Authentication authenticate = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authRequest.getUid(), authRequest.getPassword()));
-//        userDao.findByUsername(authRequest.getUsername());
-		if(authenticate.isAuthenticated()){
+	@PostMapping(path ="/authenticate")
+	public String authenticateAndGetToken(@RequestBody AuthRequest authRequest) throws UsernameNotFoundException{
+//		Authentication authenticate = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authRequest.getUid(), authRequest.getPassword()));
+        Optional<Users> users= userDao.findById(authRequest.getUid());
+		if(users.isPresent()){
 			return jwtService.generateToken(authRequest.getUid());
 		}else {
 			throw new UsernameNotFoundException("Invalid User");

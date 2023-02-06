@@ -1,9 +1,17 @@
 package com.example.yeper.yeper.controller;
 
 import java.util.List;
+import java.util.Optional;
 
+import com.example.yeper.yeper.dao.Admindao;
+import com.example.yeper.yeper.entity.AuthRequest;
+import com.example.yeper.yeper.entity.JwtService;
+import com.example.yeper.yeper.entity.Users;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,11 +30,15 @@ import com.example.yeper.yeper.services.AdminService;
 public class AdminController {
 
 	@Autowired
+	public JwtService jwtService;
+	@Autowired
+	public Admindao admindao;
+	@Autowired
 	public AdminService admin;
 
 	@GetMapping(path = "/get")
 	@PreAuthorize("hasAuthority('ROLE_ADMIN')")
-	public List<Admin> getall() {
+	public List<Users> getall() {
 		return this.admin.getall();
 	}
 
@@ -77,4 +89,6 @@ public class AdminController {
 	public Admin delete(@PathVariable long id) {
 		return this.admin.delete(id);
 	}
+
+
 }

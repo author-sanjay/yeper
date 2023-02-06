@@ -9,33 +9,33 @@ import jakarta.persistence.Id;
 public class Admin {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	public long id;
+	public String id;
 
 	public String name;
 	public String email;
 	public String password;
 	public long earning;
+	public  String role;
 
 	public Admin() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Admin(long id, String name, String email, String password, long earning) {
-		super();
+	public Admin(String id, String name, String email, String password, long earning, String role) {
 		this.id = id;
 		this.name = name;
 		this.email = email;
 		this.password = password;
 		this.earning = earning;
+		this.role = role;
 	}
 
-	public long getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
@@ -71,5 +71,11 @@ public class Admin {
 		this.earning = earning;
 	}
 
+	public String getRole() {
+		return role;
+	}
 
+	public void setRole(String role) {
+		this.role = role;
+	}
 }

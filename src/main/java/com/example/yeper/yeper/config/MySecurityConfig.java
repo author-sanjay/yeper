@@ -32,7 +32,9 @@ public class MySecurityConfig {
                 .authorizeHttpRequests().requestMatchers("/user/authenticate").permitAll()
                 .and().
                 authorizeHttpRequests().requestMatchers("/user/add").permitAll()
+                .and().authorizeHttpRequests().requestMatchers("/admin/add").permitAll()
                 .and().
+                authorizeHttpRequests().requestMatchers("/deals/getactive").permitAll().and().
                 authorizeHttpRequests().requestMatchers("/user/test").permitAll()
                 .and()
                 .authorizeHttpRequests().requestMatchers("/**").authenticated()

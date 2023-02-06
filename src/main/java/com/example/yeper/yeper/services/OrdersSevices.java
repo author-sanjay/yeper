@@ -25,4 +25,6 @@ public interface OrdersSevices {
 	public Orders add(Orders order, String id, long id2);
 
 	public List<Orders> getsingle(String id);
+
+	public Orders updatestatus(long id, String status);
 }

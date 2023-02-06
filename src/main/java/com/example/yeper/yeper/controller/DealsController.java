@@ -23,7 +23,7 @@ public class DealsController {
 	public DealsServices deals;
 
 	@GetMapping(path = "/getall")
-	@PreAuthorize("hasAnyRole('ROLE_USER','ROLE_ADMIN')")
+	@PreAuthorize("hasAnyAuthority('ROLE_USER','ROLE_ADMIN')")
 	public List<Deals> getall() {
 		return this.deals.getall();
 	}

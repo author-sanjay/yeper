@@ -44,6 +44,8 @@ public class Users {
 
 	public String photo;
 
+	public String gst;
+	public String pan;
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
 	public List<Orders> orders;
 
@@ -63,7 +65,7 @@ public class Users {
 	}
 
 
-	public Users(String uid, String password, String role, String name, String email, String phonenumber, String address, String referalCode, boolean isuser, String referralof, String acnumber, String bankname, String idfc, String photo, List<Orders> orders, Wallet wallet, List<Referrals> referrals, List<Cards> cards) {
+	public Users(String uid, String password, String role, String name, String email, String phonenumber, String address, String referalCode, boolean isuser, String referralof, String acnumber, String bankname, String idfc, String photo, String gst, String pan, List<Orders> orders, Wallet wallet, List<Referrals> referrals, List<Cards> cards) {
 		this.uid = uid;
 		this.password = password;
 		this.role = role;
@@ -78,6 +80,8 @@ public class Users {
 		this.bankname = bankname;
 		this.idfc = idfc;
 		this.photo = photo;
+		this.gst = gst;
+		this.pan = pan;
 		this.orders = orders;
 		this.wallet = wallet;
 		this.referrals = referrals;
@@ -194,6 +198,22 @@ public class Users {
 
 	public void setPhoto(String photo) {
 		this.photo = photo;
+	}
+
+	public String getGst() {
+		return gst;
+	}
+
+	public void setGst(String gst) {
+		this.gst = gst;
+	}
+
+	public String getPan() {
+		return pan;
+	}
+
+	public void setPan(String pan) {
+		this.pan = pan;
 	}
 
 	public List<Orders> getOrders() {

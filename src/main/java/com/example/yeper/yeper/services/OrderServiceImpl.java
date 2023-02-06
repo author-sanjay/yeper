@@ -78,6 +78,19 @@ public class OrderServiceImpl implements OrdersSevices {
 	}
 
 	@Override
+	public Orders updatestatus(long id, String status) {
+		Optional<Orders> order = orderdao.findById(id);
+		if(order.isPresent()){
+			Orders order2=order.get();
+			order2.setOrder_status(status);
+			orderdao.save(order2);
+			return  order2;
+		}
+		return  null;
+	}
+
+
+	@Override
 	public Orders complete(long id) {
 		// TODO Auto-generated method stub
 		Optional<Orders> order1 = orderdao.findById(id);
@@ -150,5 +163,7 @@ public class OrderServiceImpl implements OrdersSevices {
 		}
 		return null;
 	}
+
+
 
 }

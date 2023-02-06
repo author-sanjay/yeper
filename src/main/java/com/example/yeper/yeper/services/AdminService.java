@@ -2,6 +2,7 @@ package com.example.yeper.yeper.services;
 
 import java.util.List;
 
+import com.example.yeper.yeper.entity.Users;
 import org.springframework.stereotype.Service;
 
 import com.example.yeper.yeper.entity.Admin;
@@ -10,7 +11,7 @@ import com.example.yeper.yeper.entity.Admin;
 public interface AdminService {
 	public Admin add(Admin admin);
 
-	public List<Admin> getall();
+	public List<Users> getall();
 
 	public Admin verify(Admin admin);
 
