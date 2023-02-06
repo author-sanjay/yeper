@@ -19,6 +19,8 @@ public interface UserServices {
 
 	public Boolean isadmin(int id);
 
+	public  Users kyc(String uid,Users users);
+
 	public List<Users> getreferals(String id);
 
 	public Users getsingle(String id);

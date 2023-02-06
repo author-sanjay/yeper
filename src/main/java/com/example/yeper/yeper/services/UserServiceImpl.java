@@ -84,6 +84,22 @@ public class UserServiceImpl implements UserServices {
 	}
 
 	@Override
+	public Users kyc(String uid,Users users) {
+		Optional<Users> user= userdao.findById(uid);
+		if(user.isPresent()){
+			Users users1=user.get();
+			users1.setAcnumber(users.getAcnumber());
+			users1.setBankname(users.getBankname());
+			users1.setIdfc(users.getIdfc());
+			users1.setGst(users.getGst());
+			users1.setPan(users.getPan());
+			userdao.save(users1);
+			return  users1;
+		}
+		return null;
+	}
+
+	@Override
 	public List<Users> getall() {
 		// TODO Auto-generated method stub
 		return userdao.findAll();
@@ -157,5 +173,6 @@ public class UserServiceImpl implements UserServices {
 
 		return null;
 	}
+
 
 }
