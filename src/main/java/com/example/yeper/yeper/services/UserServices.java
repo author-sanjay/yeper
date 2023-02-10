@@ -19,7 +19,7 @@ public interface UserServices {
 
 	public Boolean isadmin(int id);
 
-	public  Users kyc(String uid,Users users);
+	public  Users kyc(Users users);
 
 	public List<Users> getreferals(String id);
 
@@ -30,4 +30,6 @@ public interface UserServices {
 	public List<Cards> usercards(String id);
 
 	public Users addcard(String id, String card);
+
+
 }

@@ -82,7 +82,7 @@ public class OrderServiceImpl implements OrdersSevices {
 		Optional<Orders> order = orderdao.findById(id);
 		if(order.isPresent()){
 			Orders order2=order.get();
-			order2.setOrder_status(status);
+			order2.setStatus(status);
 			orderdao.save(order2);
 			return  order2;
 		}
@@ -96,7 +96,7 @@ public class OrderServiceImpl implements OrdersSevices {
 		Optional<Orders> order1 = orderdao.findById(id);
 		if (order1.isPresent()) {
 			Orders order2 = order1.get();
-			order2.setOrder_status("Completed");
+			order2.setStatus("Completed");
 			Users user = order2.getUser();
 			Deals deal = order2.getDeals();
 			Wallet_transactions wal = new Wallet_transactions();
@@ -145,7 +145,7 @@ public class OrderServiceImpl implements OrdersSevices {
 		if (order1.isPresent()) {
 			Orders order2 = order1.get();
 			// order2=order;
-			order2.setOrder_status(order.getOrder_status());
+			order2.setStatus(order.getStatus());
 			order2.setPlatformtxnid(order.getPlatformtxnid());
 			orderdao.save(order2);
 			return order2;
@@ -165,5 +165,17 @@ public class OrderServiceImpl implements OrdersSevices {
 	}
 
 
+	public Orders addotp(Orders order){
+		Optional<Orders> orders=orderdao.findById(order.getId());
+		if(orders.isPresent()){
+			Orders orders1=orders.get();
+			orders1.setStatus(order.getStatus());
+orders1.setCourier(order.getCourier());
+orders1.setOtp(order.getOtp());
+orderdao.save(orders1);
+return orders1;
+		}
+		return null;
+	}
 
 }

@@ -13,6 +13,7 @@ public interface OrdersSevices {
 
 	public List<Orders> getall();
 
+	public  Orders addotp(Orders orders);
 
 	public Orders complete(long id);
 

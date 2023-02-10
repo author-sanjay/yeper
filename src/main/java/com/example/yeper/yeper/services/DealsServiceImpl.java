@@ -51,7 +51,11 @@ public class DealsServiceImpl implements DealsServices {
 		// TODO Auto-generated method stub
 
 		Optional<Deals> deals = dealsdao.findById(id);
-		return true;
+		if(deals.isPresent()){
+			dealsdao.deleteById(deals.get().getId());
+			return true;
+		}
+		return false;
 	}
 
 	@Override
@@ -95,7 +99,7 @@ public class DealsServiceImpl implements DealsServices {
 				Optional<Orders> order = orderdao.findById(orderslist.get(i).getId());
 				if (order.isPresent()) {
 					Orders order2 = order.get();
-					order2.setOrder_status("Completed");
+					order2.setStatus("Completed");
 					Users user = order2.getUser();
 					Wallet_transactions wal = new Wallet_transactions();
 					wal.setAmount(deal1.offer_price);

@@ -4,12 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.example.yeper.yeper.entity.Cards;
 import com.example.yeper.yeper.entity.Users;
@@ -43,5 +38,12 @@ public class CardsController {
 	@PreAuthorize("hasAuthority('ROLE_ADMIN')")
 	public List<Cards> getbyname(@PathVariable String id) {
 		return this.card.getbyname(id);
+	}
+
+
+	@DeleteMapping(path = "/delete/{id}")
+	@PreAuthorize("hasAuthority('ROLE_ADMIN')")
+	public Cards delete(@PathVariable int id) {
+		return this.card.delete(id);
 	}
 }

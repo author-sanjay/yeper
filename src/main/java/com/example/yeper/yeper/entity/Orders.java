@@ -17,12 +17,13 @@ public class Orders {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public long id;
 	
-	public String order_status;
+	public String status;
 
 	public String product;
 
 	public String date;
-	
+
+	public String courier;
 	public long deal;
 	public long otp;
 
@@ -43,11 +44,12 @@ public class Orders {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Orders(long id, String order_status, String product, String date, long deal, long otp, String platformtxnid, Users user, Deals deals) {
+	public Orders(long id, String status, String product, String date, String courier, long deal, long otp, String platformtxnid, Users user, Deals deals) {
 		this.id = id;
-		this.order_status = order_status;
+		this.status = status;
 		this.product = product;
 		this.date = date;
+		this.courier = courier;
 		this.deal = deal;
 		this.otp = otp;
 		this.platformtxnid = platformtxnid;
@@ -63,12 +65,12 @@ public class Orders {
 		this.id = id;
 	}
 
-	public String getOrder_status() {
-		return order_status;
+	public String getStatus() {
+		return status;
 	}
 
-	public void setOrder_status(String order_status) {
-		this.order_status = order_status;
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 	public String getProduct() {
@@ -85,6 +87,14 @@ public class Orders {
 
 	public void setDate(String date) {
 		this.date = date;
+	}
+
+	public String getCourier() {
+		return courier;
+	}
+
+	public void setCourier(String courier) {
+		this.courier = courier;
 	}
 
 	public long getDeal() {

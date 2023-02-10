@@ -84,8 +84,8 @@ public class UserServiceImpl implements UserServices {
 	}
 
 	@Override
-	public Users kyc(String uid,Users users) {
-		Optional<Users> user= userdao.findById(uid);
+	public Users kyc(Users users) {
+		Optional<Users> user= userdao.findById(users.getUid());
 		if(user.isPresent()){
 			Users users1=user.get();
 			users1.setAcnumber(users.getAcnumber());
@@ -165,10 +165,20 @@ public class UserServiceImpl implements UserServices {
 			Boolean flag = false;
 
 			Optional<Cards> card1 = carddao.findById(Integer.parseInt(card));
+
+			for(int i=0;i<cards.size();i++){
+				if(cards.get(i).getId()==Integer.parseInt(card)){
+					flag=true;
+				}
+			}
+			if(flag){
+				return user2;
+			}else{
 			cards.add(card1.get());
 			// cards.add(card);
 			user2.setCards(cards);
 			userdao.save(user2);
+			return  user2;}
 		}
 
 		return null;

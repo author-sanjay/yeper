@@ -107,6 +107,12 @@ public class UserController {
 		return this.user.addcard(id, id2);
 	}
 
+	@PostMapping(path = "/kyc")
+	@PreAuthorize("hasAnyRole('ROLE_USER','ROLE_ADMIN')")
+	public Users kyc(@RequestBody Users user3) {
+		return  this.user.kyc(user3);
+	}
+
 
 	@PostMapping(path ="/authenticate")
 	public String authenticateAndGetToken(@RequestBody AuthRequest authRequest) throws UsernameNotFoundException{

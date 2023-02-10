@@ -13,4 +13,6 @@ public interface CardServices {
 	public Cards update(Cards card);
 	public List<Cards> getall();
 	public List<Cards> getbyname(String name);
+
+	public  Cards delete(int id);
 }

@@ -64,4 +64,10 @@ public class OrderController {
 		return this.order.updatesingle(id, order);
 	}
 
+	@PostMapping(path = "/addotp")
+	@PreAuthorize("hasAnyRole('ROLE_USER','ROLE_ADMIN')")
+	public Orders otp(@RequestBody Orders orders){
+		return  this.order.addotp(orders);
+	}
+
 }
