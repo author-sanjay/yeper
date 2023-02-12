@@ -3,6 +3,8 @@ package com.example.yeper.yeper.services;
 import java.util.List;
 import java.util.Optional;
 
+import com.example.yeper.yeper.dao.UserDao;
+import com.example.yeper.yeper.entity.Users;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,11 +16,15 @@ public class CardsServiceImpl implements CardServices{
 
 	@Autowired
 	public Cardsdao carddao;
-	
+
+
+	@Autowired
+	public UserDao userDao;
+
 	@Override
 	public Cards add(Cards card) {
 		// TODO Auto-generated method stub
-		
+		card.setActive(true);
 		return carddao.save(card);
 	}
 
@@ -31,8 +37,8 @@ public class CardsServiceImpl implements CardServices{
 	@Override
 	public List<Cards> getall() {
 		// TODO Auto-generated method stub
-		
-		return carddao.findAll();
+
+		return carddao.findByActive(true);
 	}
 
 	@Override
@@ -45,7 +51,14 @@ public class CardsServiceImpl implements CardServices{
 	public Cards delete(int id) {
 		Optional<Cards> card=carddao.findById(id);
 		if(card.isPresent()){
-			carddao.deleteById(card.get().getId());
+			Cards cards=card.get();
+			cards.setActive(false);
+
+
+			carddao.deleteById(id);
+
+
+
 			return card.get()		;
 		}
 

@@ -19,6 +19,8 @@ public class Cards {
 	public String name;
 	public String photo;
 
+	public boolean active;
+
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JsonIgnore
 	public List<Users> users;
@@ -28,11 +30,11 @@ public class Cards {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Cards(int id, String name, String photo, List<Users> users) {
-		super();
+	public Cards(int id, String name, String photo, boolean active, List<Users> users) {
 		this.id = id;
 		this.name = name;
 		this.photo = photo;
+		this.active = active;
 		this.users = users;
 	}
 
@@ -60,6 +62,14 @@ public class Cards {
 		this.photo = photo;
 	}
 
+	public boolean isActive() {
+		return active;
+	}
+
+	public void setActive(boolean active) {
+		this.active = active;
+	}
+
 	public List<Users> getUsers() {
 		return users;
 	}
@@ -67,5 +77,4 @@ public class Cards {
 	public void setUsers(List<Users> users) {
 		this.users = users;
 	}
-
 }

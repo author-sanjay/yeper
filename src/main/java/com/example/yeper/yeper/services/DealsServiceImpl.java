@@ -52,7 +52,9 @@ public class DealsServiceImpl implements DealsServices {
 
 		Optional<Deals> deals = dealsdao.findById(id);
 		if(deals.isPresent()){
-			dealsdao.deleteById(deals.get().getId());
+			Deals deals1=deals.get();
+			deals1.setActive(false);
+			dealsdao.save(deals1);
 			return true;
 		}
 		return false;

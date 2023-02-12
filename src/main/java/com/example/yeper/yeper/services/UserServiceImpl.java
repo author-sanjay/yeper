@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -31,14 +32,8 @@ public class UserServiceImpl implements UserServices {
 	public Cardsdao carddao;
 
 	@Override
-	public Users adduser(Users user) {
-		Users user1 = userdao.findByReferalCode(user.getReferralof());
-		if (user1 != null) {
-			Referrals ref = new Referrals();
-			ref.setUser(user1);
-			ref.setName(user.name);
-			refservice.add(ref, user1.getUid());
-		}
+	public Users adduser(@NotNull Users user) {
+
 		Wallet wal = new Wallet();
 		wal.setUser(user);
 		user.setWallet(walletservice.add(wal));
