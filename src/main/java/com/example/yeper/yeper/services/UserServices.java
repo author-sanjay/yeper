@@ -2,6 +2,7 @@ package com.example.yeper.yeper.services;
 
 import java.util.List;
 
+import com.example.yeper.yeper.entity.Referrals;
 import org.springframework.stereotype.Service;
 
 import com.example.yeper.yeper.entity.Cards;
@@ -22,6 +23,8 @@ public interface UserServices {
 	public  Users kyc(Users users);
 
 	public List<Users> getreferals(String id);
+
+	public  List<Referrals> getreferrals(String id);
 
 	public Users getsingle(String id);
 

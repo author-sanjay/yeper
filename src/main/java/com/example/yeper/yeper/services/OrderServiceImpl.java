@@ -110,7 +110,7 @@ public class OrderServiceImpl implements OrdersSevices {
 			wal.setIncoming(true);
 			try {
 				try{
-				Optional<Users> user2 = userdao.findByReferalCode(user.getReferralof());
+				Optional<Users> user2 = userdao.findByReferalcode(user.getReferralof());
 				if(user2.isPresent()) {
 					walletTxnServices.add(wal2, user2.get().getUid());
 					List<Referrals> ref= user2.get().getReferrals();

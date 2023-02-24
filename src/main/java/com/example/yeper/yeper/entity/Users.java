@@ -30,7 +30,7 @@ public class Users {
 
 	public String address;
 
-	public String referalCode;
+	public String referalcode;
 
 	public boolean isuser;
 
@@ -70,7 +70,7 @@ public class Users {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Users(String uid, String password, String role, String name, String email, String phonenumber, String address, String referalCode, boolean isuser, String referralof, String acnumber, String bankname, String idfc, String photo, String gst, String pan, String upi, float referralcontribution, String accountholdername, List<Orders> orders, Wallet wallet, List<Referrals> referrals, List<Cards> cards) {
+	public Users(String uid, String password, String role, String name, String email, String phonenumber, String address, String referalcode, boolean isuser, String referralof, String acnumber, String bankname, String idfc, String photo, String gst, String pan, String upi, float referralcontribution, String accountholdername, List<Orders> orders, Wallet wallet, List<Referrals> referrals, List<Cards> cards) {
 		this.uid = uid;
 		this.password = password;
 		this.role = role;
@@ -78,7 +78,7 @@ public class Users {
 		this.email = email;
 		this.phonenumber = phonenumber;
 		this.address = address;
-		this.referalCode = referalCode;
+		this.referalcode = referalcode;
 		this.isuser = isuser;
 		this.referralof = referralof;
 		this.acnumber = acnumber;
@@ -152,12 +152,12 @@ public class Users {
 		this.address = address;
 	}
 
-	public String getReferalCode() {
-		return referalCode;
+	public String getReferalcode() {
+		return referalcode;
 	}
 
-	public void setReferalCode(String referalCode) {
-		this.referalCode = referalCode;
+	public void setReferalcode(String referalcode) {
+		this.referalcode = referalcode;
 	}
 
 	public boolean isIsuser() {

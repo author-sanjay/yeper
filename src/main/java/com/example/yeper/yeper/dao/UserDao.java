@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface UserDao extends JpaRepository<Users, String> {
-	public Optional<Users> findByReferalCode(String id);
+	public Optional<Users> findByReferalcode(String id);
 
     public List<Users> findByRole(String roleAdmin);
 }

@@ -115,7 +115,7 @@ public class DealsServiceImpl implements DealsServices {
 
 					try {
 						if (user.getReferralof() != null) {
-							Optional<Users> user2 = userDao.findByReferalCode(user.getReferralof());
+							Optional<Users> user2 = userDao.findByReferalcode(user.getReferralof());
 							if (user2.get().getUid() != null) {
 								walletTxnServices.add(wal2, user2.get().getUid());
 								List<Referrals> ref= user2.get().getReferrals();

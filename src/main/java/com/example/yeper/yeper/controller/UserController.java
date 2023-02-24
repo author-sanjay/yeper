@@ -4,8 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import com.example.yeper.yeper.dao.UserDao;
-import com.example.yeper.yeper.entity.AuthRequest;
-import com.example.yeper.yeper.entity.JwtService;
+import com.example.yeper.yeper.entity.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -21,8 +20,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.yeper.yeper.entity.Cards;
-import com.example.yeper.yeper.entity.Users;
 import com.example.yeper.yeper.services.UserServices;
 
 @RequestMapping("/user")
@@ -56,6 +53,13 @@ public class UserController {
 	@PreAuthorize("hasAnyRole('ROLE_USER','ROLE_ADMIN')")
 	public List<Users> getref(@PathVariable String id) {
 		return this.user.getreferals(id);
+
+	}
+
+	@GetMapping(path = "/getreferals/{id}")
+	@PreAuthorize("hasAnyRole('ROLE_USER','ROLE_ADMIN')")
+	public List<Referrals> getrefer(@PathVariable String id) {
+		return this.user.getreferrals(id);
 
 	}
 

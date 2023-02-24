@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Optional;
 
 import com.example.yeper.yeper.dao.ReferralDao;
+import org.apache.catalina.User;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -37,24 +38,27 @@ public class UserServiceImpl implements UserServices {
 
 	@Override
 	public Users adduser( Users user) {
-		Optional<Users> users=userdao.findByReferalCode(user.getReferralof());
 		Wallet wal = new Wallet();
 		wal.setUser(user);
 		user.setWallet(walletservice.add(wal));
 //		user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
 		user.setRole("ROLE_USER");
 		user.setReferralcontribution(0);
+		user.setReferalcode(user.getReferalcode());
 		Users users1=userdao.save(user);
-		if(users.isPresent()){
-			List<Referrals> user2=users.get().getReferrals();
+		Optional<Users> user3=userdao.findByReferalcode(user.getReferralof());
+		System.out.println(user3.get().getName());
+		if(user3.isPresent()){
+			Users users=user3.get();
+			List<Referrals> user2=users.getReferrals();
 			Referrals ref=new Referrals();
 			ref.setUser(users1);
 			ref.setDate(LocalDate.now().toString());
 			ref.setName(user.getName());
 			Referrals ref2=referralDao.save(ref);
 			user2.add(ref2);
-			users.get().setReferrals(user2);
-			userdao.save(users.get());
+			users.setReferrals(user2);
+			userdao.save(users);
 		}
 		return user;
 	}
@@ -127,11 +131,19 @@ public class UserServiceImpl implements UserServices {
 			List<Referrals> ref = user2.getReferrals();
 			for (int i = 0; i < ref.size(); i++) {
 				refe.add(ref.get(i).getUser());
-
 			}
 			return refe;
 		}
 
+		return null;
+	}
+
+	@Override
+	public List<Referrals> getreferrals(String id) {
+		Optional<Users> user = userdao.findById(id);
+		if (user.isPresent()) {
+			return user.get().getReferrals();
+		}
 		return null;
 	}
 
