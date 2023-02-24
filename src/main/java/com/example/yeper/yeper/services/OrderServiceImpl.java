@@ -5,6 +5,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Optional;
 
+import com.example.yeper.yeper.entity.*;
 import org.apache.tomcat.util.net.TLSClientHelloExtractor.ExtractorResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.util.Pair;
@@ -13,10 +14,6 @@ import org.springframework.stereotype.Service;
 import com.example.yeper.yeper.dao.DealsDao;
 import com.example.yeper.yeper.dao.Ordersdao;
 import com.example.yeper.yeper.dao.UserDao;
-import com.example.yeper.yeper.entity.Deals;
-import com.example.yeper.yeper.entity.Orders;
-import com.example.yeper.yeper.entity.Users;
-import com.example.yeper.yeper.entity.Wallet_transactions;
 
 @Service
 public class OrderServiceImpl implements OrdersSevices {
@@ -112,8 +109,22 @@ public class OrderServiceImpl implements OrdersSevices {
 			wal2.setDate(now.toString());
 			wal.setIncoming(true);
 			try {
+				try{
 				Optional<Users> user2 = userdao.findByReferalCode(user.getReferralof());
-				walletTxnServices.add(wal2, user2.get().getUid());
+				if(user2.isPresent()) {
+					walletTxnServices.add(wal2, user2.get().getUid());
+					List<Referrals> ref= user2.get().getReferrals();
+					for(int i=0;i<ref.size();i++){
+						if(ref.get(i).getUser().getUid().equals(user.getUid())){
+							ref.get(i).setContri((float) (deal.getOffer_price()*0.1));
+							user2.get().setReferralcontribution((float) (user2.get().getReferralcontribution()+deal.getOffer_price()*0.1));
+						}
+					}
+				}
+				}
+				catch (Exception e){
+					System.out.println(e);
+				}
 				adminService.updateearning((long) ((long) deal.offer_price * 0.4));
 			} catch (Exception e) {
 				System.err.println("Error");

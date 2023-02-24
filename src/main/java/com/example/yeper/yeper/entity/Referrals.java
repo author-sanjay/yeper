@@ -24,17 +24,19 @@ public class Referrals {
 
 	public String name;
 
+	public float contri;
+
 	public Referrals() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Referrals(long id, String date, Users user, String name) {
-		super();
+	public Referrals(long id, String date, Users user, String name, float contri) {
 		this.id = id;
 		this.date = date;
 		this.user = user;
 		this.name = name;
+		this.contri = contri;
 	}
 
 	public long getId() {
@@ -69,6 +71,11 @@ public class Referrals {
 		this.name = name;
 	}
 
-	
-	
+	public float getContri() {
+		return contri;
+	}
+
+	public void setContri(float contri) {
+		this.contri = contri;
+	}
 }

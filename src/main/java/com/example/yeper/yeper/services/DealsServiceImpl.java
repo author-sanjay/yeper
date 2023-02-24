@@ -8,6 +8,7 @@ import java.util.Optional;
 
 import javax.xml.crypto.Data;
 
+import com.example.yeper.yeper.entity.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Service;
@@ -15,11 +16,6 @@ import org.springframework.stereotype.Service;
 import com.example.yeper.yeper.dao.DealsDao;
 import com.example.yeper.yeper.dao.Ordersdao;
 import com.example.yeper.yeper.dao.UserDao;
-import com.example.yeper.yeper.entity.Deals;
-import com.example.yeper.yeper.entity.Orders;
-import com.example.yeper.yeper.entity.Users;
-import com.example.yeper.yeper.entity.Wallet;
-import com.example.yeper.yeper.entity.Wallet_transactions;
 
 @Service
 public class DealsServiceImpl implements DealsServices {
@@ -122,6 +118,13 @@ public class DealsServiceImpl implements DealsServices {
 							Optional<Users> user2 = userDao.findByReferalCode(user.getReferralof());
 							if (user2.get().getUid() != null) {
 								walletTxnServices.add(wal2, user2.get().getUid());
+								List<Referrals> ref= user2.get().getReferrals();
+								for(int j=0;j<ref.size();j++){
+									if(ref.get(j).getUser().getUid().equals(user.getUid())){
+										ref.get(j).setContri((float) (deal1.getOffer_price()*0.1));
+										user2.get().setReferralcontribution((float) (user2.get().getReferralcontribution()+deal1.getOffer_price()*0.1));
+									}
+								}
 							} else {
 								continue;
 							}
