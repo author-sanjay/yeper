@@ -1,5 +1,6 @@
 package com.example.yeper.yeper.services;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -69,7 +70,14 @@ public class ReferralServiceImpl implements ReferralServices{
 		// TODO Auto-generated method stub
 		Optional<Users> user=userdao.findById(id);
 		if(user.isPresent()) {
-			return user.get().getReferrals();
+			List<Referrals> ref=referraldao.findAll();
+			ArrayList<Referrals> reff=new ArrayList<>();
+			for(int i=0;i<ref.size();i++){
+				if(ref.get(i).getUserof().getUid().equals(id)){
+					reff.add(ref.get(i));
+				}
+			}
+			return reff;
 		}
 		
 		return null;

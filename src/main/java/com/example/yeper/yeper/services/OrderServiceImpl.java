@@ -5,6 +5,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Optional;
 
+import com.example.yeper.yeper.dao.ReferralDao;
 import com.example.yeper.yeper.entity.*;
 import org.apache.tomcat.util.net.TLSClientHelloExtractor.ExtractorResult;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +33,8 @@ public class OrderServiceImpl implements OrdersSevices {
 
 	@Autowired
 	public WalletTxnServices walletTxnServices;
+	@Autowired
+	private ReferralDao referralDao;
 
 	@Override
 	public Orders add(Orders order, String id, long id2) {
@@ -105,22 +108,29 @@ public class OrderServiceImpl implements OrdersSevices {
 			walletTxnServices.add(wal, user.getUid());
 			Wallet_transactions wal2 = new Wallet_transactions();
 			long walamaount = (long) ((long) deal.getOffer_price() * 0.1);
+			user.setReferralcontribution((float) (user.getReferralcontribution()+deal.getOffer_price()*0.1));
 			wal2.setAmount(walamaount);
 			wal2.setDate(now.toString());
 			wal.setIncoming(true);
 			try {
 				try{
-				Optional<Users> user2 = userdao.findByReferalcode(user.getReferralof());
-				if(user2.isPresent()) {
-					walletTxnServices.add(wal2, user2.get().getUid());
-					List<Referrals> ref= user2.get().getReferrals();
+					List<Referrals> ref=referralDao.findAll();
 					for(int i=0;i<ref.size();i++){
 						if(ref.get(i).getUser().getUid().equals(user.getUid())){
-							ref.get(i).setContri((float) (deal.getOffer_price()*0.1));
-							user2.get().setReferralcontribution((float) (user2.get().getReferralcontribution()+deal.getOffer_price()*0.1));
+							ref.get(i).setContri(ref.get(i).getContri()+(float) (deal.getOffer_price()*0.1));
 						}
 					}
-				}
+//				Optional<Users> user2 = userdao.findByReferalcode(user.getReferralof());
+//				if(user2.isPresent()) {
+//					walletTxnServices.add(wal2, user2.get().getUid());
+//					List<Referrals> ref= user2.get().getReferrals();
+//					for(int i=0;i<ref.size();i++){
+//						if(ref.get(i).getUser().getUid().equals(user.getUid())){
+//							ref.get(i).setContri((float) (deal.getOffer_price()*0.1));
+//							user2.get().setReferralcontribution((float) (user2.get().getReferralcontribution()+deal.getOffer_price()*0.1));
+//						}
+//					}
+//				}
 				}
 				catch (Exception e){
 					System.out.println(e);

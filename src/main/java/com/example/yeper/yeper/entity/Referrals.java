@@ -2,13 +2,7 @@ package com.example.yeper.yeper.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 
 @Entity
 public class Referrals {
@@ -22,9 +16,24 @@ public class Referrals {
 	@JoinColumn(name = "user")
 	public Users user;
 
+
+
+
+	@ManyToOne
+	@JoinColumn(name = "userof_uid")
+	public  Users userof;
+
 	public String name;
 
 	public float contri;
+
+	public Users getUserof() {
+		return userof;
+	}
+
+	public void setUserof(Users userof) {
+		this.userof = userof;
+	}
 
 	public Referrals() {
 		super();

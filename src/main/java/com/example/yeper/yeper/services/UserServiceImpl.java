@@ -55,6 +55,7 @@ public class UserServiceImpl implements UserServices {
 			ref.setUser(users1);
 			ref.setDate(LocalDate.now().toString());
 			ref.setName(user.getName());
+			ref.setUserof(users);
 			Referrals ref2=referralDao.save(ref);
 			user2.add(ref2);
 			users.setReferrals(user2);
