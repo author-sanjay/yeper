@@ -1,9 +1,11 @@
 package com.example.yeper.yeper.services;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import com.example.yeper.yeper.dao.ReferralDao;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -30,16 +32,30 @@ public class UserServiceImpl implements UserServices {
 
 	@Autowired
 	public Cardsdao carddao;
+	@Autowired
+	private ReferralDao referralDao;
 
 	@Override
-	public Users adduser(@NotNull Users user) {
-
+	public Users adduser( Users user) {
+		Optional<Users> users=userdao.findByReferalCode(user.getReferralof());
 		Wallet wal = new Wallet();
 		wal.setUser(user);
 		user.setWallet(walletservice.add(wal));
-		user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
+//		user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
 		user.setRole("ROLE_USER");
-		userdao.save(user);
+		user.setReferralcontribution(0);
+		Users users1=userdao.save(user);
+		if(users.isPresent()){
+			List<Referrals> user2=users.get().getReferrals();
+			Referrals ref=new Referrals();
+			ref.setUser(users1);
+			ref.setDate(LocalDate.now().toString());
+			ref.setName(user.getName());
+			Referrals ref2=referralDao.save(ref);
+			user2.add(ref2);
+			users.get().setReferrals(user2);
+			userdao.save(users.get());
+		}
 		return user;
 	}
 

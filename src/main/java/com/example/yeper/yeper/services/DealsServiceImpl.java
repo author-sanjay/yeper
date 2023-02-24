@@ -116,11 +116,12 @@ public class DealsServiceImpl implements DealsServices {
 					wal2.setAmount(walamaount);
 					wal2.setDate(now.toString());
 					wal.setIncoming(true);
+
 					try {
 						if (user.getReferralof() != null) {
-							Users user2 = userDao.findByReferalCode(user.getReferralof());
-							if (user2.getUid() != null) {
-								walletTxnServices.add(wal2, user2.getUid());
+							Optional<Users> user2 = userDao.findByReferalCode(user.getReferralof());
+							if (user2.get().getUid() != null) {
+								walletTxnServices.add(wal2, user2.get().getUid());
 							} else {
 								continue;
 							}

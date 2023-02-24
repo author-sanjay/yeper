@@ -112,8 +112,8 @@ public class OrderServiceImpl implements OrdersSevices {
 			wal2.setDate(now.toString());
 			wal.setIncoming(true);
 			try {
-				Users user2 = userdao.findByReferalCode(user.getReferralof());
-				walletTxnServices.add(wal2, user2.getUid());
+				Optional<Users> user2 = userdao.findByReferalCode(user.getReferralof());
+				walletTxnServices.add(wal2, user2.get().getUid());
 				adminService.updateearning((long) ((long) deal.offer_price * 0.4));
 			} catch (Exception e) {
 				System.err.println("Error");

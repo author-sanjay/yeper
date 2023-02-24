@@ -46,6 +46,12 @@ public class Users {
 
 	public String gst;
 	public String pan;
+
+	public String upi;
+
+	public float referralcontribution;
+
+	public String accountholdername;
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
 	public List<Orders> orders;
 
@@ -64,8 +70,7 @@ public class Users {
 		// TODO Auto-generated constructor stub
 	}
 
-
-	public Users(String uid, String password, String role, String name, String email, String phonenumber, String address, String referalCode, boolean isuser, String referralof, String acnumber, String bankname, String idfc, String photo, String gst, String pan, List<Orders> orders, Wallet wallet, List<Referrals> referrals, List<Cards> cards) {
+	public Users(String uid, String password, String role, String name, String email, String phonenumber, String address, String referalCode, boolean isuser, String referralof, String acnumber, String bankname, String idfc, String photo, String gst, String pan, String upi, float referralcontribution, String accountholdername, List<Orders> orders, Wallet wallet, List<Referrals> referrals, List<Cards> cards) {
 		this.uid = uid;
 		this.password = password;
 		this.role = role;
@@ -82,6 +87,9 @@ public class Users {
 		this.photo = photo;
 		this.gst = gst;
 		this.pan = pan;
+		this.upi = upi;
+		this.referralcontribution = referralcontribution;
+		this.accountholdername = accountholdername;
 		this.orders = orders;
 		this.wallet = wallet;
 		this.referrals = referrals;
@@ -214,6 +222,30 @@ public class Users {
 
 	public void setPan(String pan) {
 		this.pan = pan;
+	}
+
+	public String getUpi() {
+		return upi;
+	}
+
+	public void setUpi(String upi) {
+		this.upi = upi;
+	}
+
+	public float getReferralcontribution() {
+		return referralcontribution;
+	}
+
+	public void setReferralcontribution(float referralcontribution) {
+		this.referralcontribution = referralcontribution;
+	}
+
+	public String getAccountholdername() {
+		return accountholdername;
+	}
+
+	public void setAccountholdername(String accountholdername) {
+		this.accountholdername = accountholdername;
 	}
 
 	public List<Orders> getOrders() {
