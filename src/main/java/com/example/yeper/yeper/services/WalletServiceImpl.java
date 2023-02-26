@@ -30,15 +30,15 @@ public class WalletServiceImpl implements WalletServices{
 		Optional<Wallet> wal=walletdao.findById(id);
 		if(wal.isPresent()) {
 			Wallet wal2=wal.get();
-		txn=wal2.getTxn();
-		long bal=0;
-		for(int i=0;i<txn.size();i++) {
-			bal=(long) txn.get(i).amount;
+			txn=wal2.getTxn();
+			long bal=0;
+			for(int i=0;i<txn.size();i++) {
+				bal=(long) txn.get(i).amount;
 			
-		}
-		wal2.setBalance(bal);
-		walletdao.save(wal2);
-		return wal2;
+			}
+			wal2.setBalance(bal);
+			walletdao.save(wal2);
+			return wal2;
 		}else {
 		return null;}
 	}

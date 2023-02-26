@@ -105,6 +105,7 @@ public class OrderServiceImpl implements OrdersSevices {
 			LocalDateTime now = LocalDateTime.now();
 			wal.setDate(now.toString());
 			wal.setIncoming(true);
+			wal.setMessage("Payment for order id"+order2.getId());
 			walletTxnServices.add(wal, user.getUid());
 			Wallet_transactions wal2 = new Wallet_transactions();
 			long walamaount = (long) ((long) deal.getOffer_price() * 0.1);

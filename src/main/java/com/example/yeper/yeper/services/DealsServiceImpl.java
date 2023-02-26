@@ -104,6 +104,7 @@ public class DealsServiceImpl implements DealsServices {
 					Users user = order2.getUser();
 					Wallet_transactions wal = new Wallet_transactions();
 					wal.setAmount(deal1.offer_price);
+					wal.setMessage("Payment for order id"+order2.getId());
 					DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
 					LocalDateTime now = LocalDateTime.now();
 					wal.setDate(now.toString());

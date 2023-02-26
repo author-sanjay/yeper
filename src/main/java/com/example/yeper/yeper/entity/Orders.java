@@ -27,6 +27,8 @@ public class Orders {
 	public long deal;
 	public long otp;
 
+	public long phonenumberr;
+
 	public String platformtxnid;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
@@ -44,7 +46,7 @@ public class Orders {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Orders(long id, String status, String product, String date, String courier, long deal, long otp, String platformtxnid, Users user, Deals deals) {
+	public Orders(long id, String status, String product, String date, String courier, long deal, long otp, long phonenumberr, String platformtxnid, Users user, Deals deals) {
 		this.id = id;
 		this.status = status;
 		this.product = product;
@@ -52,6 +54,7 @@ public class Orders {
 		this.courier = courier;
 		this.deal = deal;
 		this.otp = otp;
+		this.phonenumberr = phonenumberr;
 		this.platformtxnid = platformtxnid;
 		this.user = user;
 		this.deals = deals;
@@ -111,6 +114,14 @@ public class Orders {
 
 	public void setOtp(long otp) {
 		this.otp = otp;
+	}
+
+	public long getPhonenumberr() {
+		return phonenumberr;
+	}
+
+	public void setPhonenumberr(long phonenumberr) {
+		this.phonenumberr = phonenumberr;
 	}
 
 	public String getPlatformtxnid() {
