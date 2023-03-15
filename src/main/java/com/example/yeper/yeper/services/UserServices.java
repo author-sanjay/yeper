@@ -5,7 +5,6 @@ import java.util.List;
 import com.example.yeper.yeper.entity.Referrals;
 import org.springframework.stereotype.Service;
 
-import com.example.yeper.yeper.entity.Cards;
 import com.example.yeper.yeper.entity.Users;
 
 @Service
@@ -30,9 +29,7 @@ public interface UserServices {
 
 	public long getwalletid(String id);
 
-	public List<Cards> usercards(String id);
 
-	public Users addcard(String id, String card);
 
 
 }

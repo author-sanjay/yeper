@@ -21,6 +21,7 @@ public class Deals {
 	public long offer_price;
 	public String card;
 	public long user_earning;
+	public long phonenumber;
 	public String photourl;
 	public int countleft;
 	public boolean active;
@@ -43,7 +44,7 @@ public class Deals {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Deals(long id, String product_name, String description, long actual_price, long offer_price, String card, long user_earning, String photourl, int countleft, boolean active, String offerlink, String platform, String name, String deliverto, String addresssfordelivery, long pincode, String offerdetails, List<Orders> orders) {
+	public Deals(long id, String product_name, String description, long actual_price, long offer_price, String card, long user_earning, long phonenumber, String photourl, int countleft, boolean active, String offerlink, String platform, String name, String deliverto, String addresssfordelivery, long pincode, String offerdetails, List<Orders> orders) {
 		this.id = id;
 		this.product_name = product_name;
 		this.description = description;
@@ -51,6 +52,7 @@ public class Deals {
 		this.offer_price = offer_price;
 		this.card = card;
 		this.user_earning = user_earning;
+		this.phonenumber = phonenumber;
 		this.photourl = photourl;
 		this.countleft = countleft;
 		this.active = active;
@@ -118,6 +120,14 @@ public class Deals {
 
 	public void setUser_earning(long user_earning) {
 		this.user_earning = user_earning;
+	}
+
+	public long getPhonenumber() {
+		return phonenumber;
+	}
+
+	public void setPhonenumber(long phonenumber) {
+		this.phonenumber = phonenumber;
 	}
 
 	public String getPhotourl() {

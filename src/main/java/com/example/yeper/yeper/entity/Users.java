@@ -61,16 +61,13 @@ public class Users {
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
 	public List<Referrals> referrals;
 
-	@ManyToMany(cascade = CascadeType.ALL)
-	// @JsonIgnore
-	public List<Cards> cards;
 
 	public Users() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Users(String uid, String password, String role, String name, String email, String phonenumber, String address, String referalcode, boolean isuser, String referralof, String acnumber, String bankname, String idfc, String photo, String gst, String pan, String upi, float referralcontribution, String accountholdername, List<Orders> orders, Wallet wallet, List<Referrals> referrals, List<Cards> cards) {
+	public Users(String uid, String password, String role, String name, String email, String phonenumber, String address, String referalcode, boolean isuser, String referralof, String acnumber, String bankname, String idfc, String photo, String gst, String pan, String upi, float referralcontribution, String accountholdername, List<Orders> orders, Wallet wallet, List<Referrals> referrals) {
 		this.uid = uid;
 		this.password = password;
 		this.role = role;
@@ -93,7 +90,6 @@ public class Users {
 		this.orders = orders;
 		this.wallet = wallet;
 		this.referrals = referrals;
-		this.cards = cards;
 	}
 
 	public String getUid() {
@@ -270,13 +266,5 @@ public class Users {
 
 	public void setReferrals(List<Referrals> referrals) {
 		this.referrals = referrals;
-	}
-
-	public List<Cards> getCards() {
-		return cards;
-	}
-
-	public void setCards(List<Cards> cards) {
-		this.cards = cards;
 	}
 }

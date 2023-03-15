@@ -99,17 +99,7 @@ public class UserController {
 		return this.user.getwalletid(id);
 	}
 
-	@GetMapping(path = "/getcards/{id}")
-	@PreAuthorize("hasAnyRole('ROLE_USER','ROLE_ADMIN')")
-	public List<Cards> getcards(@PathVariable String id) {
-		return this.user.usercards(id);
-	}
 
-	@PostMapping(path = "/addcards/{id}/{id2}")
-	@PreAuthorize("hasAnyRole('ROLE_USER','ROLE_ADMIN')")
-	public Users addcards(@PathVariable String id, @PathVariable String id2) {
-		return this.user.addcard(id, id2);
-	}
 
 	@PostMapping(path = "/kyc")
 	@PreAuthorize("hasAnyRole('ROLE_USER','ROLE_ADMIN')")

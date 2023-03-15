@@ -47,6 +47,7 @@ public class OrderServiceImpl implements OrdersSevices {
 			Deals deal2 = deals.get();
 			order.setUser(user1);
 			order.setDeals(deal2);
+			order.setStatus("Placed");
 			orderdao.save(order);
 			deal2.setCountleft(deal2.getCountleft() - 1);
 			if (deal2.getCountleft() == 0) {
@@ -167,6 +168,8 @@ public class OrderServiceImpl implements OrdersSevices {
 		if (order1.isPresent()) {
 			Orders order2 = order1.get();
 			// order2=order;
+			order2.setOtp(order.getOtp());
+			order2.setPhonenumberr(order.getPhonenumberr());
 			order2.setStatus(order.getStatus());
 			order2.setPlatformtxnid(order.getPlatformtxnid());
 			orderdao.save(order2);

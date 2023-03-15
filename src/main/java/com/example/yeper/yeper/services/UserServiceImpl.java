@@ -6,15 +6,10 @@ import java.util.List;
 import java.util.Optional;
 
 import com.example.yeper.yeper.dao.ReferralDao;
-import org.apache.catalina.User;
-import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.example.yeper.yeper.dao.Cardsdao;
 import com.example.yeper.yeper.dao.UserDao;
-import com.example.yeper.yeper.entity.Cards;
 import com.example.yeper.yeper.entity.Referrals;
 import com.example.yeper.yeper.entity.Users;
 import com.example.yeper.yeper.entity.Wallet;
@@ -31,8 +26,7 @@ public class UserServiceImpl implements UserServices {
 	@Autowired
 	public WalletServices walletservice;
 
-	@Autowired
-	public Cardsdao carddao;
+
 	@Autowired
 	private ReferralDao referralDao;
 
@@ -48,18 +42,22 @@ public class UserServiceImpl implements UserServices {
 		Users users1=userdao.save(user);
 		Optional<Users> user3=userdao.findByReferalcode(user.getReferralof());
 		System.out.println(user3.get().getName());
-		if(user3.isPresent()){
-			Users users=user3.get();
-			List<Referrals> user2=users.getReferrals();
-			Referrals ref=new Referrals();
-			ref.setUser(users1);
-			ref.setDate(LocalDate.now().toString());
-			ref.setName(user.getName());
-			ref.setUserof(users);
-			Referrals ref2=referralDao.save(ref);
-			user2.add(ref2);
-			users.setReferrals(user2);
-			userdao.save(users);
+		try{
+			if(user3.isPresent()){
+				Users users=user3.get();
+				List<Referrals> user2=users.getReferrals();
+				Referrals ref=new Referrals();
+				ref.setUser(users1);
+				ref.setDate(LocalDate.now().toString());
+				ref.setName(user.getName());
+				ref.setUserof(users);
+				Referrals ref2=referralDao.save(ref);
+				user2.add(ref2);
+				users.setReferrals(user2);
+				userdao.save(users);
+			}
+		} catch (Exception e){
+			System.out.println(e);
 		}
 		return user;
 	}
@@ -143,7 +141,14 @@ public class UserServiceImpl implements UserServices {
 	public List<Referrals> getreferrals(String id) {
 		Optional<Users> user = userdao.findById(id);
 		if (user.isPresent()) {
-			return user.get().getReferrals();
+			List<Referrals> ref=referralDao.findAll();
+			ArrayList<Referrals> reff=new ArrayList<>();
+			for(int i=0;i<ref.size();i++){
+				if(ref.get(i).getUserof().getUid().equals(id)){
+					reff.add(ref.get(i));
+				}
+			}
+			return reff;
 		}
 		return null;
 	}
@@ -169,44 +174,9 @@ public class UserServiceImpl implements UserServices {
 		return 0;
 	}
 
-	@Override
-	public List<Cards> usercards(String id) {
-		// TODO Auto-generated method stub
-		Optional<Users> user = userdao.findById(id);
-		if (user.isPresent()) {
-			return user.get().cards;
-		}
-		return null;
-	}
 
-	@Override
-	public Users addcard(String id, String card) {
-		// TODO Auto-generated method stub
-		Optional<Users> user = userdao.findById(id);
-		if (user.isPresent()) {
-			Users user2 = user.get();
-			List<Cards> cards = user2.getCards();
-			Boolean flag = false;
 
-			Optional<Cards> card1 = carddao.findById(Integer.parseInt(card));
 
-			for(int i=0;i<cards.size();i++){
-				if(cards.get(i).getId()==Integer.parseInt(card)){
-					flag=true;
-				}
-			}
-			if(flag){
-				return user2;
-			}else{
-			cards.add(card1.get());
-			// cards.add(card);
-			user2.setCards(cards);
-			userdao.save(user2);
-			return  user2;}
-		}
-
-		return null;
-	}
 
 
 }
